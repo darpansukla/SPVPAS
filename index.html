@@ -6,50 +6,45 @@
     <title>South Point Visual & Performing Arts School, Guwahati</title>
     <style>
         :root{
-            --bg:#050807;
-            --panel:rgba(12,24,18,.72);
-            --panel-strong:rgba(10,22,16,.88);
-            --line:rgba(190,255,225,.15);
-            --line-strong:rgba(110,231,183,.38);
-            --text:#f7fffb;
-            --muted:#b7c9c0;
-            --accent:#63e6b0;
-            --accent-2:#22c58b;
-            --shadow:0 24px 70px rgba(0,0,0,.48);
+            --bg:#f4f6f8;
+            --panel:#ffffff;
+            --panel-strong:#ffffff;
+            --line:#e2e8f0;
+            --line-strong:#cbd5e1;
+            --text:#0f172a;
+            --muted:#64748b;
+            --accent:#0ea5e9;
+            --accent-gradient:linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+            --shadow:0 20px 40px rgba(15,23,42,.08);
+            --card-shadow:0 10px 30px rgba(15,23,42,.05);
         }
 
         *{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif}
-        html,body{width:100%;height:100%;background:radial-gradient(circle at 50% 0%,#123025 0%,var(--bg) 48%,#020403 100%);color:var(--text)}
+        html,body{width:100%;height:100%;background:#f8fafc;color:var(--text)}
         body{display:flex;justify-content:center;align-items:center;overflow:hidden;-webkit-font-smoothing:antialiased}
         button,a{font:inherit;-webkit-tap-highlight-color:transparent}
 
         .mobile-frame{
             position:relative;width:100vw;height:100dvh;max-width:500px;
-            background:
-                linear-gradient(180deg,rgba(1,7,4,.25),rgba(1,7,4,.72)),
-                url('background_image.jpeg') center/cover no-repeat,#030806;
+            background:#ffffff;
             display:flex;flex-direction:column;overflow:hidden;
-            padding:calc(14px + env(safe-area-inset-top)) 16px calc(12px + env(safe-area-inset-bottom));
+            padding:calc(16px + env(safe-area-inset-top)) 20px calc(14px + env(safe-area-inset-bottom));
             isolation:isolate;
         }
-        .mobile-frame:before{
-            content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;
-            background:radial-gradient(circle at 50% 42%,rgba(61,220,153,.10),transparent 38%);
-        }
         @media(min-width:501px){
-            .mobile-frame{height:min(92dvh,880px);border:1px solid rgba(255,255,255,.12);border-radius:38px;box-shadow:0 30px 90px rgba(0,0,0,.7)}
+            .mobile-frame{height:min(92dvh,880px);border:1px solid var(--line);border-radius:40px;box-shadow:0 25px 60px rgba(15,23,42,.12)}
         }
 
         .glow-leaves-container{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
-        .glow-leaf{position:absolute;top:-20px;background:radial-gradient(circle,rgba(110,231,183,.95),rgba(52,211,153,.22) 60%,transparent 100%);border-radius:50% 0 50% 50%;box-shadow:0 0 14px rgba(74,222,128,.7);opacity:.55;animation:fallLeaf linear infinite}
+        .glow-leaf{position:absolute;top:-20px;background:radial-gradient(circle,rgba(14,165,233,.15),transparent 70%);border-radius:50%;opacity:.4;animation:fallLeaf linear infinite}
         @keyframes fallLeaf{
-            0%{transform:translate3d(0,-30px,0) rotate(0);opacity:0}
-            18%{opacity:.65}
-            80%{opacity:.5}
-            100%{transform:translate3d(35px,105dvh,0) rotate(360deg);opacity:0}
+            0%{transform:translate3d(0,-30px,0) scale(0.8);opacity:0}
+            20%{opacity:.5}
+            80%{opacity:.3}
+            100%{transform:translate3d(25px,105dvh,0) scale(1.2);opacity:0}
         }
 
-        header{height:8px;flex-shrink:0;z-index:5}
+        header{height:4px;flex-shrink:0;z-index:5}
 
         .content-area{
             flex:1;width:100%;min-height:0;display:flex;align-items:center;justify-content:center;
@@ -61,98 +56,92 @@
         .section{display:none;width:100%;opacity:0;transform:translateY(8px) scale(.985);transition:opacity .28s ease,transform .28s ease}
         .section.active{display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:1;transform:none}
 
-        .home-wrapper{width:100%;display:flex;flex-direction:column;align-items:center;gap:20px}
-        .brand-block{text-align:center;width:100%;padding:0 10px}
-        .brand-kicker{
-            display:inline-flex;align-items:center;gap:7px;padding:6px 11px;border:1px solid var(--line);
-            border-radius:999px;background:rgba(255,255,255,.055);backdrop-filter:blur(12px);
-            color:#d9fff0;font-size:9px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:9px
-        }
-        .brand-kicker:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+        .home-wrapper{width:100%;display:flex;flex-direction:column;align-items:center;gap:22px}
+        .brand-block{text-align:center;width:100%;padding:0 4px}
         .school-title-inline h1{
-            font-size:clamp(16px,4vw,19px);font-weight:750;letter-spacing:-.25px;line-height:1.25;
-            text-shadow:0 3px 18px rgba(0,0,0,.85)
+            font-size:clamp(17px,4vw,20px);font-weight:750;letter-spacing:-.3px;line-height:1.3;
+            color:#0f172a
         }
-        .school-subtitle{margin-top:6px;color:var(--muted);font-size:10px;letter-spacing:.65px}
+        .school-subtitle{margin-top:6px;color:var(--muted);font-size:11px;letter-spacing:.3px;font-weight:500}
 
-        .portals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px 11px;width:100%;max-width:400px}
+        .portals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px 12px;width:100%;max-width:420px}
         .portal-item{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;color:inherit;transition:transform .18s ease}
-        .portal-item:active{transform:scale(.93)}
-        .portal-item.disabled{opacity:.38;pointer-events:none}
+        .portal-item:active{transform:scale(.94)}
+        .portal-item.disabled{opacity:.4;pointer-events:none}
         .portal-squircle{
-            width:72px;height:72px;border-radius:22px;display:flex;align-items:center;justify-content:center;
-            position:relative;color:var(--accent);background:linear-gradient(145deg,rgba(35,73,57,.76),rgba(5,16,11,.92));
-            border:1px solid var(--line-strong);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-            box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 12px 28px rgba(0,0,0,.42);
-            transition:box-shadow .2s ease,border-color .2s ease,transform .2s ease
+            width:74px;height:74px;border-radius:24px;display:flex;align-items:center;justify-content:center;
+            position:relative;color:#0284c7;background:#ffffff;
+            border:1px solid var(--line);
+            box-shadow:0 10px 25px rgba(15,23,42,.06), 0 2px 6px rgba(15,23,42,.04);
+            transition:all .2s ease
         }
-        .portal-item:hover .portal-squircle{border-color:rgba(110,231,183,.7);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 16px 34px rgba(0,0,0,.52),0 0 20px rgba(34,197,139,.10);transform:translateY(-2px)}
-        .portal-squircle svg{width:31px;height:31px;fill:currentColor}
-        .portal-label{font-size:11px;font-weight:650;color:#e3fff2;text-align:center;white-space:nowrap;text-shadow:0 2px 6px #000}
+        .portal-item:hover .portal-squircle{border-color:#bae6fd;box-shadow:0 14px 30px rgba(14,165,233,.12);transform:translateY(-3px)}
+        .portal-squircle svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+        .portal-label{font-size:11px;font-weight:650;color:#334155;text-align:center;white-space:nowrap}
         .portal-badge{
-            position:absolute;top:-6px;right:-6px;padding:4px 7px;border-radius:999px;
-            font-size:8px;font-weight:800;background:var(--accent);color:#032319;box-shadow:0 4px 12px rgba(0,0,0,.4)
+            position:absolute;top:-5px;right:-5px;padding:3px 7px;border-radius:999px;
+            font-size:8px;font-weight:800;background:#0ea5e9;color:#ffffff;box-shadow:0 4px 10px rgba(14,165,233,.3)
         }
-        .portal-badge.na{background:#26312d;color:#a8b4af}
+        .portal-badge.na{background:#e2e8f0;color:#64748b;box-shadow:none}
 
         .glass-card{
-            width:100%;max-width:400px;padding:12px;border-radius:25px;
-            background:linear-gradient(145deg,rgba(18,39,29,.76),rgba(3,12,8,.80));
-            border:1px solid var(--line);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);box-shadow:var(--shadow)
+            width:100%;max-width:420px;padding:16px;border-radius:28px;
+            background:#ffffff;
+            border:1px solid var(--line);box-shadow:var(--card-shadow)
         }
-        .card-heading{display:flex;align-items:center;justify-content:space-between;margin:2px 4px 11px}
-        .card-heading h2{font-size:14px;font-weight:750;letter-spacing:-.2px}
-        .status-pill{font-size:8px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:#063323;background:#9af5cc;padding:5px 8px;border-radius:999px}
+        .card-heading{display:flex;align-items:center;justify-content:space-between;margin:2px 4px 12px}
+        .card-heading h2{font-size:15px;font-weight:750;letter-spacing:-.2px;color:#0f172a}
+        .status-pill{font-size:9px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#0369a1;background:#e0f2fe;padding:5px 10px;border-radius:999px}
 
         .video-box{
-            position:relative;width:100%;padding-bottom:56.25%;height:0;border-radius:18px;overflow:hidden;background:#000;
-            border:1px solid rgba(110,231,183,.25);box-shadow:0 12px 30px rgba(0,0,0,.48)
+            position:relative;width:100%;padding-bottom:56.25%;height:0;border-radius:20px;overflow:hidden;background:#f1f5f9;
+            border:1px solid var(--line);box-shadow:0 8px 20px rgba(15,23,42,.04)
         }
         .video-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-        .video-caption{text-align:center;color:var(--muted);font-size:10px;margin-top:10px}
+        .video-caption{text-align:center;color:var(--muted);font-size:11px;margin-top:12px;font-weight:500}
 
-        .gallery-container{width:100%;max-width:400px}
-        .gallery-slider{width:100%;height:min(52vh,320px);min-height:230px;border-radius:22px;overflow:hidden;position:relative;background:#06100b;border:1px solid var(--line);box-shadow:var(--shadow)}
+        .gallery-container{width:100%;max-width:420px}
+        .gallery-slider{width:100%;height:min(52vh,320px);min-height:240px;border-radius:22px;overflow:hidden;position:relative;background:#f8fafc;border:1px solid var(--line);box-shadow:0 8px 20px rgba(15,23,42,.04)}
         .gallery-slide{position:absolute;inset:0;opacity:0;transition:opacity .55s ease;display:flex;align-items:center;justify-content:center}
         .gallery-slide.active{opacity:1}
         .gallery-slide img{width:100%;height:100%;object-fit:cover;display:block}
-        .gallery-slide:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.42))}
-        .fallback-text{color:#b7f5da;font-size:12px;font-weight:600}
-        .gallery-meta{display:flex;align-items:center;justify-content:space-between;margin-top:11px;color:var(--muted);font-size:9px}
+        .gallery-slide:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(15,23,42,.2))}
+        .fallback-text{color:#64748b;font-size:12px;font-weight:600}
+        .gallery-meta{display:flex;align-items:center;justify-content:space-between;margin-top:12px;color:var(--muted);font-size:10px;font-weight:500}
         .gallery-dots{display:flex;gap:5px}
-        .dot{width:6px;height:6px;border-radius:99px;background:rgba(110,231,183,.25);transition:.3s}
-        .dot.active{width:18px;background:var(--accent)}
+        .dot{width:6px;height:6px;border-radius:99px;background:#cbd5e1;transition:.3s}
+        .dot.active{width:20px;background:#0ea5e9}
 
-        footer{display:flex;flex-direction:column;align-items:center;gap:9px;z-index:10;flex-shrink:0}
+        footer{display:flex;flex-direction:column;align-items:center;gap:10px;z-index:10;flex-shrink:0}
         .dock{
-            display:flex;align-items:center;justify-content:center;gap:10px;padding:7px 8px;
-            background:rgba(4,15,10,.78);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
-            border:1px solid var(--line);border-radius:25px;box-shadow:0 16px 40px rgba(0,0,0,.48)
+            display:flex;align-items:center;justify-content:center;gap:8px;padding:8px;
+            background:#ffffff;
+            border:1px solid var(--line);border-radius:28px;box-shadow:0 15px 35px rgba(15,23,42,.08)
         }
         .dock-btn{
-            width:47px;height:43px;border:0;border-radius:18px;background:transparent;color:#91a69d;
+            width:50px;height:44px;border:0;border-radius:18px;background:transparent;color:#64748b;
             display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s
         }
-        .dock-btn svg{width:22px;height:22px;fill:currentColor}
-        .dock-btn.active{background:linear-gradient(145deg,#76f0bc,#28c78d);color:#03291b;box-shadow:0 7px 20px rgba(40,199,141,.28)}
+        .dock-btn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+        .dock-btn.active{background:var(--accent-gradient);color:#ffffff;box-shadow:0 8px 20px rgba(14,165,233,.3)}
         .developer-credit{
-            display:flex;align-items:center;gap:5px;color:rgba(213,255,237,.62);font-size:9px;letter-spacing:.45px;font-weight:550;
-            padding:3px 9px 0;text-shadow:0 1px 4px #000
+            display:flex;align-items:center;gap:6px;color:#64748b;font-size:10px;letter-spacing:.3px;font-weight:600;
+            padding:2px 10px 0
         }
-        .developer-credit:before{content:"";width:20px;height:1px;background:rgba(110,231,183,.25)}
-        .developer-credit:after{content:"";width:20px;height:1px;background:rgba(110,231,183,.25)}
+        .developer-credit:before{content:"";width:16px;height:1px;background:#cbd5e1}
+        .developer-credit:after{content:"";width:16px;height:1px;background:#cbd5e1}
 
         @media(max-height:650px){
-            .home-wrapper{gap:12px}.portals-grid{gap:10px}.portal-squircle{width:60px;height:60px;border-radius:18px}.portal-squircle svg{width:27px;height:27px}
-            .gallery-slider{height:210px;min-height:190px}.school-subtitle{display:none}.brand-kicker{margin-bottom:5px;padding:4px 9px}
+            .home-wrapper{gap:12px}.portals-grid{gap:10px}.portal-squircle{width:62px;height:62px;border-radius:20px}.portal-squircle svg{width:24px;height:24px}
+            .gallery-slider{height:210px;min-height:190px}.school-subtitle{display:none}
         }
-        @media(max-width:360px){.portal-squircle{width:62px;height:62px}.portals-grid{gap:13px 7px}.portal-label{font-size:10px}}
+        @media(max-width:360px){.portal-squircle{width:64px;height:64px}.portals-grid{gap:12px 6px}.portal-label{font-size:10px}}
     </style>
 </head>
 <body>
 
     <div class="mobile-frame">
-        <!-- Falling Glow Leaves Animation Effect -->
+        <!-- Minimalist Background Effect -->
         <div class="glow-leaves-container" id="leavesContainer"></div>
 
         <!-- Header Spacer -->
@@ -165,7 +154,6 @@
             <div id="tab-home" class="section active">
                 <div class="home-wrapper">
                     <div class="brand-block">
-                        <div class="brand-kicker">Student Portal</div>
                         <div class="school-title-inline">
                             <h1>South Point Visual & Performing Arts School, Guwahati</h1>
                         </div>
@@ -174,7 +162,8 @@
                     <div class="portals-grid">
                         <a href="https://darpansukla.github.io/fineartsexam27/" target="_blank" class="portal-item">
                             <div class="portal-squircle">
-                                <svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.37l1.86.78C7.5 17.5 9.5 14 17 12V8zm-2-5c-3.31 0-6 2.69-6 6 0 1.66.67 3.16 1.76 4.24C12 11.5 14 9 18.5 7.5 17.4 4.8 16.3 3 15 3z"/></svg>
+                                <!-- Modern User Plus / Enrollment Icon -->
+                                <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
                                 <span class="portal-badge">Open</span>
                             </div>
                             <span class="portal-label">Enrollment</span>
@@ -182,7 +171,8 @@
 
                         <a href="https://darpansukla.github.io/SPVPAS-Monthly-Fee-Portal/" target="_blank" class="portal-item">
                             <div class="portal-squircle">
-                                <svg viewBox="0 0 24 24"><path d="M6 3h12v2H6V3zm0 4h12v2H6V7zm6 2c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/></svg>
+                                <!-- Modern Credit Card / Fee Icon -->
+                                <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                                 <span class="portal-badge">₹ Pay</span>
                             </div>
                             <span class="portal-label">Monthly Fee</span>
@@ -190,7 +180,8 @@
 
                         <a href="https://darpansukla.github.io/Mock-Test-Fine-Arts-Painting-" target="_blank" class="portal-item">
                             <div class="portal-squircle">
-                                <svg viewBox="0 0 24 24"><path d="M12 2L4 13h3.5L5 18h4.5L7 22h10l-2.5-4H19l-2.5-5H20L12 2z"/></svg>
+                                <!-- Modern Clipboard Check / Mock Test Icon -->
+                                <svg viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="m9 14 2 2 4-4"></path></svg>
                                 <span class="portal-badge">Start</span>
                             </div>
                             <span class="portal-label">Mock Test</span>
@@ -198,7 +189,8 @@
 
                         <div class="portal-item disabled">
                             <div class="portal-squircle">
-                                <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                                <!-- Modern File Text / Exam Form Icon -->
+                                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                                 <span class="portal-badge na">N/A</span>
                             </div>
                             <span class="portal-label">Exam Form</span>
@@ -206,7 +198,8 @@
 
                         <div class="portal-item disabled">
                             <div class="portal-squircle">
-                                <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                                <!-- Modern Award / Result Icon -->
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path></svg>
                                 <span class="portal-badge na">N/A</span>
                             </div>
                             <span class="portal-label">Result</span>
@@ -214,7 +207,8 @@
 
                         <div class="portal-item disabled">
                             <div class="portal-squircle">
-                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                <!-- Modern Star / Special Class Icon -->
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                                 <span class="portal-badge na">N/A</span>
                             </div>
                             <span class="portal-label">Special Class</span>
@@ -230,7 +224,7 @@
                     <div class="video-box">
                         <iframe src="https://www.youtube-nocookie.com/embed/iUfH1DZ04U4" title="Tutorial Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
-                    <div style="font-size: 11px; text-align: center; color: #a7f3d0; font-weight: 600; text-shadow: 0 1px 3px rgba(0,0,0,0.9);">
+                    <div class="video-caption">
                         Tutorial Video for Exam Form Fillup
                     </div>
                 </div>
@@ -258,13 +252,16 @@
         <footer>
             <div class="dock">
                 <button class="dock-btn active" onclick="switchTab('home', this)" title="Home">
-                    <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                    <!-- Modern Home Icon -->
+                    <svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                 </button>
                 <button class="dock-btn" onclick="switchTab('video', this)" title="Tutorial">
-                    <svg viewBox="0 0 24 24"><path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                    <!-- Modern Play/Video Icon -->
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"></polygon></svg>
                 </button>
                 <button class="dock-btn" onclick="switchTab('gallery', this)" title="Gallery">
-                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <!-- Modern Image/Gallery Icon -->
+                    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
                 </button>
             </div>
             <div class="developer-credit">Design & Developed by Darpan Sukla</div>
@@ -325,18 +322,18 @@
             dots[currentSlide].classList.add('active');
         }, 3000);
 
-        // Falling Leaves Particles
+        // Subtle Background Floating Particles
         const leavesContainer = document.getElementById('leavesContainer');
-        const leafCount = 12;
+        const leafCount = 8;
         for(let i = 0; i < leafCount; i++) {
             const leaf = document.createElement('div');
             leaf.className = 'glow-leaf';
-            const size = Math.random() * 6 + 3;
+            const size = Math.random() * 25 + 15;
             leaf.style.width = `${size}px`;
-            leaf.style.height = `${size * 1.4}px`;
+            leaf.style.height = `${size}px`;
             leaf.style.left = `${Math.random() * 100}%`;
-            leaf.style.animationDuration = `${Math.random() * 4 + 4}s`;
-            leaf.style.animationDelay = `${Math.random() * 4}s`;
+            leaf.style.animationDuration = `${Math.random() * 6 + 6}s`;
+            leaf.style.animationDelay = `${Math.random() * 5}s`;
             leavesContainer.appendChild(leaf);
         }
     </script>
