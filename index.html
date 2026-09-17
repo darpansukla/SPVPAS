@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>South Point Visual & Performing Arts School, Guwahati</title>
     <style>
         * {
@@ -16,27 +16,26 @@
 
         body, html {
             width: 100%;
-            height: 100%;
+            min-height: 100%;
             background-color: #030806;
             color: #f0fdf4;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
-        /* Apple-style Device Frame Container with Full Brightness Background */
+        /* Mobile App Frame Container */
         .mobile-frame {
             position: relative;
             width: 100%;
             max-width: 414px;
-            height: 100vh;
-            max-height: 100vh;
+            min-height: 100vh;
             background: url('background_image.jpeg') center/cover no-repeat, #030806;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 16px;
+            padding: 12px 14px 14px 14px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.95);
             overflow: hidden;
         }
@@ -45,9 +44,9 @@
             .mobile-frame {
                 height: 92vh;
                 max-height: 880px;
-                border-radius: 44px;
+                border-radius: 36px;
                 border: 8px solid #0d1a14;
-                outline: 1px solid rgba(255, 255, 255, 0.08);
+                margin: 20px 0;
             }
         }
 
@@ -85,45 +84,45 @@
                 opacity: 0.8;
             }
             100% {
-                transform: translateY(calc(100vh + 40px)) translateX(40px) rotate(360deg);
+                transform: translateY(calc(100vh + 40px)) translateX(30px) rotate(360deg);
                 opacity: 0;
             }
         }
 
-        /* Perfectly Framed Header Inside App */
+        /* Header placed safely inside view */
         header {
             width: 100%;
             display: flex;
             justify-content: center;
             z-index: 10;
+            margin-top: 4px;
         }
 
         .school-title-box {
-            background: rgba(3, 15, 10, 0.65);
+            background: rgba(3, 18, 12, 0.82);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(110, 231, 183, 0.25);
-            padding: 8px 12px;
-            border-radius: 14px;
+            border: 1px solid rgba(110, 231, 183, 0.35);
+            padding: 8px 10px;
+            border-radius: 12px;
             width: 100%;
             text-align: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
         }
 
         header h1 {
-            font-size: 11.5px;
+            font-size: 11px;
             font-weight: 700;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.4px;
             color: #ffffff;
             text-transform: uppercase;
-            line-height: 1.35;
+            line-height: 1.3;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
         }
 
         /* Content Area */
         .content-area {
             flex: 1;
-            overflow-y: auto;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -131,15 +130,11 @@
             z-index: 5;
         }
 
-        .content-area::-webkit-scrollbar {
-            display: none;
-        }
-
         .section {
             display: none;
             opacity: 0;
             transform: scale(0.97);
-            transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 0.25s ease, transform 0.25s ease;
         }
 
         .section.active {
@@ -155,10 +150,9 @@
         .portals-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 16px 12px;
+            gap: 12px 8px;
             width: 100%;
             max-width: 350px;
-            padding: 4px;
         }
 
         .portal-item {
@@ -166,12 +160,12 @@
             flex-direction: column;
             align-items: center;
             text-decoration: none;
-            gap: 6px;
-            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            gap: 4px;
+            transition: transform 0.15s ease;
         }
 
         .portal-item:active {
-            transform: scale(0.90);
+            transform: scale(0.92);
         }
 
         .portal-item.disabled {
@@ -181,39 +175,32 @@
 
         /* Apple iOS Squircle Icon Container */
         .portal-squircle {
-            width: 62px;
-            height: 62px;
-            border-radius: 20px;
-            background: rgba(10, 24, 18, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: rgba(10, 24, 18, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(82, 183, 136, 0.5);
             display: flex;
             align-items: center;
             justify-content: center;
             color: #6ee7b7;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.2);
             position: relative;
-            transition: all 0.25s ease;
-        }
-
-        .portal-item:hover .portal-squircle {
-            border-color: rgba(110, 231, 183, 0.9);
-            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.5);
         }
 
         .portal-squircle svg {
-            width: 25px;
-            height: 25px;
+            width: 23px;
+            height: 23px;
             fill: currentColor;
         }
 
         .portal-label {
-            font-size: 11px;
+            font-size: 10.5px;
             font-weight: 500;
             color: #d1fae5;
             text-align: center;
-            letter-spacing: -0.1px;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
         }
 
@@ -222,13 +209,13 @@
             position: absolute;
             top: -4px;
             right: -4px;
-            font-size: 8px;
+            font-size: 7.5px;
             font-weight: 600;
-            padding: 2px 6px;
-            border-radius: 10px;
+            padding: 2px 5px;
+            border-radius: 8px;
             background: #10b981;
             color: #022c22;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
         }
 
         .portal-badge.na {
@@ -242,11 +229,11 @@
             width: 100%;
             padding-bottom: 56.25%;
             height: 0;
-            border-radius: 20px;
+            border-radius: 14px;
             overflow: hidden;
             background: #000;
             border: 1px solid rgba(82, 183, 136, 0.4);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
         }
 
         .video-box iframe {
@@ -261,9 +248,9 @@
         /* Gallery Grid Format */
         .gallery-wrapper {
             width: 100%;
-            max-height: 380px;
+            max-height: 320px;
             overflow-y: auto;
-            padding: 4px;
+            padding: 2px;
         }
 
         .gallery-wrapper::-webkit-scrollbar {
@@ -295,7 +282,6 @@
             font-weight: 600;
             border: 1px solid rgba(82, 183, 136, 0.35);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-            position: relative;
         }
 
         .gallery-item img {
@@ -305,45 +291,46 @@
             display: block;
         }
 
-        /* Apple Dock Style Footer Navigation */
+        /* Apple Dock Style Footer Navigation & Credits */
         footer {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             z-index: 10;
+            margin-bottom: 2px;
         }
 
         .dock {
             display: flex;
             justify-content: center;
-            gap: 16px;
-            padding: 8px 16px;
+            gap: 14px;
+            padding: 6px 14px;
             background: rgba(8, 22, 16, 0.85);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border-radius: 32px;
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 28px;
             border: 1px solid rgba(82, 183, 136, 0.4);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
         }
 
         .dock-btn {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            width: 42px;
-            height: 42px;
-            border-radius: 16px;
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #9ca3af;
             cursor: pointer;
-            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.2s ease;
         }
 
         .dock-btn svg {
-            width: 19px;
-            height: 19px;
+            width: 17px;
+            height: 17px;
             fill: currentColor;
         }
 
@@ -351,21 +338,17 @@
             background: #10b981;
             color: #022c22;
             border-color: #34d399;
-            transform: scale(1.08);
-            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+            transform: scale(1.06);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.5);
         }
 
-        /* Developer Credit */
-        .dev-credit {
-            font-size: 10px;
-            text-align: center;
-            color: #d1fae5;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+        .developer-credit {
+            font-size: 9.5px;
+            color: rgba(167, 243, 208, 0.65);
             letter-spacing: 0.3px;
-        }
-        .dev-credit span {
-            color: #34d399;
-            font-weight: 600;
+            text-align: center;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
+            font-weight: 400;
         }
     </style>
 </head>
@@ -375,7 +358,7 @@
         <!-- Falling Glow Leaves Animation Effect -->
         <div class="glow-leaves-container" id="leavesContainer"></div>
 
-        <!-- Framed Clean Header Inside App -->
+        <!-- Safe Framed Header Inside View -->
         <header>
             <div class="school-title-box">
                 <h1>South Point Visual & Performing Arts School, Guwahati</h1>
@@ -443,7 +426,7 @@
                 <div class="video-box" style="width: 100%;">
                     <iframe src="https://www.youtube-nocookie.com/embed/iUfH1DZ04U4" title="Tutorial Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
-                <div style="font-size: 11px; text-align: center; color: #a7f3d0; font-weight: 500; margin-top: 8px; text-shadow: 0 1px 3px rgba(0,0,0,0.9);">
+                <div style="font-size: 11px; text-align: center; color: #a7f3d0; font-weight: 500; margin-top: 6px; text-shadow: 0 1px 3px rgba(0,0,0,0.9);">
                     Tutorial Video for Exam Form Fillup
                 </div>
             </div>
@@ -459,7 +442,7 @@
 
         </div>
 
-        <!-- Apple Dock Navigation & Developer Footer -->
+        <!-- Apple Dock Navigation Footer & Credits -->
         <footer>
             <div class="dock">
                 <button class="dock-btn active" onclick="switchTab('home', this)" title="Home">
@@ -472,9 +455,7 @@
                     <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
                 </button>
             </div>
-            <div class="dev-credit">
-                Design & Developed by <span>Darpan sukla</span>
-            </div>
+            <div class="developer-credit">Design & Developed by Darpan Sukla</div>
         </footer>
     </div>
 
@@ -487,7 +468,7 @@
             btn.classList.add('active');
         }
 
-        // Automatically Generate Gallery Items (Change 3 to your total number of images)
+        // Automatically Generate Gallery Items
         const grid = document.getElementById('galleryGrid');
         for(let i = 1; i <= 3; i++) {
             const div = document.createElement('div');
@@ -496,7 +477,6 @@
             const img = document.createElement('img');
             img.src = `${i}.jpg`;
             img.alt = `Gallery ${i}`;
-            // Fallback if image file doesn't exist yet in folder
             img.onerror = function() {
                 this.remove();
                 div.innerText = `#${i}`;
@@ -508,16 +488,16 @@
 
         // Generate Falling Glow Leaves Animation Particles
         const leavesContainer = document.getElementById('leavesContainer');
-        const leafCount = 14;
+        const leafCount = 10;
         for(let i = 0; i < leafCount; i++) {
             const leaf = document.createElement('div');
             leaf.className = 'glow-leaf';
-            const size = Math.random() * 8 + 6; // 6px to 14px
+            const size = Math.random() * 7 + 4;
             leaf.style.width = `${size}px`;
             leaf.style.height = `${size * 1.4}px`;
             leaf.style.left = `${Math.random() * 100}%`;
-            leaf.style.animationDuration = `${Math.random() * 5 + 4}s`; // 4s to 9s fall time
-            leaf.style.animationDelay = `${Math.random() * 5}s`;
+            leaf.style.animationDuration = `${Math.random() * 4 + 4}s`;
+            leaf.style.animationDelay = `${Math.random() * 4}s`;
             leavesContainer.appendChild(leaf);
         }
     </script>
