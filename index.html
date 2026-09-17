@@ -32,12 +32,11 @@
             max-width: 414px;
             height: 100vh;
             max-height: 100vh;
-            /* 100% Full Brightness Background Image without dark tint overlay */
             background: url('background_image.jpeg') center/cover no-repeat, #030806;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 20px 16px 24px 16px;
+            padding: 16px 16px 24px 16px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.95);
             overflow: hidden;
         }
@@ -91,33 +90,25 @@
             }
         }
 
-        /* Apple Dynamic Floating Header */
+        /* Clean Text Header (No Bar/Card) */
         header {
             width: 100%;
             display: flex;
             justify-content: center;
             z-index: 10;
-        }
-
-        .header-card {
-            background: rgba(8, 22, 16, 0.75);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(82, 183, 136, 0.4);
-            padding: 10px 18px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            width: 100%;
+            padding: 4px 8px;
         }
 
         header h1 {
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.6px;
-            color: #d1fae5;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+            text-align: center;
             text-transform: uppercase;
-            line-height: 1.35;
+            line-height: 1.4;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95), 0 1px 2px rgba(0, 0, 0, 0.9);
+            width: 100%;
         }
 
         /* Content Area */
@@ -258,7 +249,7 @@
             border: none;
         }
 
-        /* Gallery Grid Format Fixed */
+        /* Gallery Grid Format */
         .gallery-wrapper {
             width: 100%;
             max-height: 400px;
@@ -375,11 +366,9 @@
         <!-- Falling Glow Leaves Animation Effect -->
         <div class="glow-leaves-container" id="leavesContainer"></div>
 
-        <!-- Floating Apple Glass Header -->
+        <!-- Clean Text Header (No Bar/Card) -->
         <header>
-            <div class="header-card">
-                <h1>South Point Visual & Performing Arts School, Guwahati</h1>
-            </div>
+            <h1>South Point Visual & Performing Arts School, Guwahati</h1>
         </header>
 
         <!-- Main Content Area -->
@@ -412,13 +401,14 @@
                         <span class="portal-label">Mock Test</span>
                     </a>
 
-                    <a href="https://darpansukla.github.io/Fine-Arts-Examination/" target="_blank" class="portal-item">
+                    <!-- Exam Form Portal Disabled (N/A) -->
+                    <div class="portal-item disabled">
                         <div class="portal-squircle">
                             <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-                            <span class="portal-badge">Fill</span>
+                            <span class="portal-badge na">N/A</span>
                         </div>
                         <span class="portal-label">Exam Form</span>
-                    </a>
+                    </div>
 
                     <div class="portal-item disabled">
                         <div class="portal-squircle">
@@ -487,9 +477,9 @@
             btn.classList.add('active');
         }
 
-        // Automatically Generate 51 Gallery Items (1.jpg to 51.jpg)
+        // Automatically Generate Gallery Items (Change 3 to your total number of images)
         const grid = document.getElementById('galleryGrid');
-        for(let i = 1; i <= 51; i++) {
+        for(let i = 1; i <= 3; i++) {
             const div = document.createElement('div');
             div.className = 'gallery-item';
             
