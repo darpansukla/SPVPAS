@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>South Point Visual & Performing Arts School, Guwahati</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background-color: #030806;
+            color: #f0fdf4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Apple-style Device Frame Container */
+        .mobile-frame {
+            position: relative;
+            width: 100%;
+            max-width: 414px;
+            height: 100vh;
+            max-height: 100vh;
+            /* Vibrant background exposure */
+            background: linear-gradient(180deg, rgba(3, 15, 10, 0.35) 0%, rgba(2, 10, 7, 0.6) 100%), url('background_image.jpeg') center/cover no-repeat, #030806;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px 16px 24px 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.95);
+            overflow: hidden;
+        }
+
+        @media (min-width: 415px) {
+            .mobile-frame {
+                height: 92vh;
+                max-height: 880px;
+                border-radius: 44px;
+                border: 8px solid #0d1a14;
+                outline: 1px solid rgba(255, 255, 255, 0.08);
+            }
+        }
+
+        /* Falling Glow Leaves Animation Container */
+        .glow-leaves-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .glow-leaf {
+            position: absolute;
+            top: -20px;
+            background: radial-gradient(circle, rgba(110,231,183,1) 0%, rgba(52,211,153,0.3) 60%, transparent 100%);
+            border-radius: 50% 0 50% 50%;
+            box-shadow: 0 0 10px rgba(74,222,128,0.8);
+            opacity: 0.7;
+            animation: fallLeaf linear infinite;
+        }
+
+        @keyframes fallLeaf {
+            0% {
+                transform: translateY(-20px) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+            }
+            80% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(calc(100vh + 40px)) translateX(40px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Apple Dynamic Floating Header */
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .header-card {
+            background: rgba(8, 22, 16, 0.65);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(82, 183, 136, 0.3);
+            padding: 10px 18px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            width: 100%;
+        }
+
+        header h1 {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.6px;
+            color: #d1fae5;
+            text-transform: uppercase;
+            line-height: 1.35;
+        }
+
+        /* Content Area */
+        .content-area {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 10px 0;
+            z-index: 5;
+        }
+
+        .content-area::-webkit-scrollbar {
+            display: none;
+        }
+
+        .section {
+            display: none;
+            opacity: 0;
+            transform: scale(0.97);
+            transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .section.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* iOS Grid Layout for Portals */
+        .portals-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px 12px;
+            width: 100%;
+            max-width: 350px;
+            padding: 4px;
+        }
+
+        .portal-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            gap: 8px;
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .portal-item:active {
+            transform: scale(0.90);
+        }
+
+        .portal-item.disabled {
+            opacity: 0.35;
+            pointer-events: none;
+        }
+
+        /* Apple iOS Squircle Icon Container */
+        .portal-squircle {
+            width: 64px;
+            height: 64px;
+            border-radius: 22px;
+            background: rgba(10, 24, 18, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(82, 183, 136, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6ee7b7;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+            position: relative;
+            transition: all 0.25s ease;
+        }
+
+        .portal-item:hover .portal-squircle {
+            border-color: rgba(110, 231, 183, 0.8);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+        }
+
+        .portal-squircle svg {
+            width: 26px;
+            height: 26px;
+            fill: currentColor;
+        }
+
+        .portal-label {
+            font-size: 11px;
+            font-weight: 500;
+            color: #d1fae5;
+            text-align: center;
+            letter-spacing: -0.1px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+        }
+
+        /* iOS Style Pill Badge */
+        .portal-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            font-size: 8px;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 10px;
+            background: #10b981;
+            color: #022c22;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+        }
+
+        .portal-badge.na {
+            background: #374151;
+            color: #9ca3af;
+        }
+
+        /* Video Container */
+        .video-box {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #000;
+            border: 1px solid rgba(82, 183, 136, 0.4);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+        }
+
+        .video-box iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Gallery Grid Format Fixed */
+        .gallery-wrapper {
+            width: 100%;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 4px;
+        }
+
+        .gallery-wrapper::-webkit-scrollbar {
+            width: 3px;
+        }
+        .gallery-wrapper::-webkit-scrollbar-thumb {
+            background: rgba(110, 231, 183, 0.4);
+            border-radius: 3px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            width: 100%;
+        }
+
+        .gallery-item {
+            width: 100%;
+            aspect-ratio: 1;
+            background: rgba(10, 24, 18, 0.9);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: #a7f3d0;
+            font-weight: 600;
+            border: 1px solid rgba(82, 183, 136, 0.35);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Apple Dock Style Footer Navigation */
+        footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .dock {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            padding: 8px 16px;
+            background: rgba(8, 22, 16, 0.75);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border-radius: 32px;
+            border: 1px solid rgba(82, 183, 136, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+        }
+
+        .dock-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            width: 44px;
+            height: 44px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .dock-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .dock-btn.active {
+            background: #10b981;
+            color: #022c22;
+            border-color: #34d399;
+            transform: scale(1.08);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+        }
+
+        /* Developer Credit */
+        .dev-credit {
+            font-size: 10px;
+            text-align: center;
+            color: #6b7280;
+            letter-spacing: 0.3px;
+        }
+        .dev-credit span {
+            color: #34d399;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-frame">
+        <!-- Falling Glow Leaves Background Effect -->
+        <div class="glow-leaves-container" id="leavesContainer"></div>
+
+        <!-- Floating Apple Glass Header -->
+        <header>
+            <div class="header-card">
+                <h1>South Point Visual & Performing Arts School, Guwahati</h1>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <div class="content-area">
+
+            <!-- TAB 1: PORTALS -->
+            <div id="tab-home" class="section active">
+                <div class="portals-grid">
+                    <a href="https://darpansukla.github.io/fineartsexam27/" target="_blank" class="portal-item">
+                        <div class="portal-squircle">
+                            <svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.37l1.86.78C7.5 17.5 9.5 14 17 12V8zm-2-5c-3.31 0-6 2.69-6 6 0 1.66.67 3.16 1.76 4.24C12 11.5 14 9 18.5 7.5 17.4 4.8 16.3 3 15 3z"/></svg>
+                            <span class="portal-badge">Open</span>
+                        </div>
+                        <span class="portal-label">Enrollment</span>
+                    </a>
+
+                    <a href="https://darpansukla.github.io/SPVPAS-Monthly-Fee-Portal/" target="_blank" class="portal-item">
+                        <div class="portal-squircle">
+                            <svg viewBox="0 0 24 24"><path d="M6 3h12v2H6V3zm0 4h12v2H6V7zm6 2c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/></svg>
+                            <span class="portal-badge">₹ Pay</span>
+                        </div>
+                        <span class="portal-label">Monthly Fee</span>
+                    </a>
+
+                    <a href="https://darpansukla.github.io/Mock-Test-Fine-Arts-Painting-" target="_blank" class="portal-item">
+                        <div class="portal-squircle">
+                            <svg viewBox="0 0 24 24"><path d="M12 2L4 13h3.5L5 18h4.5L7 22h10l-2.5-4H19l-2.5-5H20L12 2z"/></svg>
+                            <span class="portal-badge">Start</span>
+                        </div>
+                        <span class="portal-label">Mock Test</span>
+                    </a>
+
+                    <a href="https://darpansukla.github.io/Fine-Arts-Examination/" target="_blank" class="portal-item">
+                        <div class="portal-squircle">
+                            <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                            <span class="portal-badge">Fill</span>
+                        </div>
+                        <span class="portal-label">Exam Form</span>
+                    </a>
+
+                    <div class="portal-item disabled">
+                        <div class="portal-squircle">
+                            <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                            <span class="portal-badge na">N/A</span>
+                        </div>
+                        <span class="portal-label">Result</span>
+                    </div>
+
+                    <div class="portal-item disabled">
+                        <div class="portal-squircle">
+                            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <span class="portal-badge na">N/A</span>
+                        </div>
+                        <span class="portal-label">Special Class</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: TUTORIAL VIDEO -->
+            <div id="tab-video" class="section">
+                <div class="video-box" style="width: 100%;">
+                    <iframe src="https://www.youtube-nocookie.com/embed/iUfH1DZ04U4" title="Tutorial Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div style="font-size: 11px; text-align: center; color: #a7f3d0; font-weight: 500; margin-top: 8px;">
+                    Tutorial Video for Exam Form Fillup
+                </div>
+            </div>
+
+            <!-- TAB 3: GALLERY (Fixed Grid View) -->
+            <div id="tab-gallery" class="section">
+                <div class="gallery-wrapper">
+                    <div class="gallery-grid" id="galleryGrid">
+                        <!-- Populated automatically via script -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Apple Dock Navigation & Developer Footer -->
+        <footer>
+            <div class="dock">
+                <button class="dock-btn active" onclick="switchTab('home', this)" title="Home">
+                    <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                </button>
+                <button class="dock-btn" onclick="switchTab('video', this)" title="Tutorial">
+                    <svg viewBox="0 0 24 24"><path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                </button>
+                <button class="dock-btn" onclick="switchTab('gallery', this)" title="Gallery">
+                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                </button>
+            </div>
+            <div class="dev-credit">
+                Design & Developed by <span>Darpan sukla</span>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function switchTab(tabId, btn) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.dock-btn').forEach(b => b.classList.remove('active'));
+            
+            document.getElementById('tab-' + tabId).classList.add('active');
+            btn.classList.add('active');
+        }
+
+        // Automatically Generate 51 Gallery Items (1.jpg to 51.jpg)
+        const grid = document.getElementById('galleryGrid');
+        for(let i = 1; i <= 51; i++) {
+            const div = document.createElement('div');
+            div.className = 'gallery-item';
+            
+            const img = document.createElement('img');
+            img.src = `${i}.jpg`;
+            img.alt = `Gallery ${i}`;
+            // Fallback if image file doesn't exist yet in folder
+            img.onerror = function() {
+                this.remove();
+                div.innerText = `#${i}`;
+            };
+            
+            div.appendChild(img);
+            grid.appendChild(div);
+        }
+
+        // Generate Falling Glow Leaves Animation Particles
+        const leavesContainer = document.getElementById('leavesContainer');
+        const leafCount = 14;
+        for(let i = 0; i < leafCount; i++) {
+            const leaf = document.createElement('div');
+            leaf.className = 'glow-leaf';
+            const size = Math.random() * 8 + 6; // 6px to 14px
+            leaf.style.width = `${size}px`;
+            leaf.style.height = `${size * 1.4}px`;
+            leaf.style.left = `${Math.random() * 100}%`;
+            leaf.style.animationDuration = `${Math.random() * 5 + 4}s`; // 4s to 9s fall time
+            leaf.style.animationDelay = `${Math.random() * 5}s`;
+            leavesContainer.appendChild(leaf);
+        }
+    </script>
+</body>
+</html>
