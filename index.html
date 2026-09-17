@@ -2,385 +2,151 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>South Point Visual & Performing Arts School, Guwahati</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
-            -webkit-tap-highlight-color: transparent;
-            -webkit-font-smoothing: antialiased;
+        :root{
+            --bg:#050807;
+            --panel:rgba(12,24,18,.72);
+            --panel-strong:rgba(10,22,16,.88);
+            --line:rgba(190,255,225,.15);
+            --line-strong:rgba(110,231,183,.38);
+            --text:#f7fffb;
+            --muted:#b7c9c0;
+            --accent:#63e6b0;
+            --accent-2:#22c58b;
+            --shadow:0 24px 70px rgba(0,0,0,.48);
         }
 
-        body, html {
-            width: 100%;
-            height: 100%;
-            background-color: #030806;
-            color: #f0fdf4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
+        *{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif}
+        html,body{width:100%;height:100%;background:radial-gradient(circle at 50% 0%,#123025 0%,var(--bg) 48%,#020403 100%);color:var(--text)}
+        body{display:flex;justify-content:center;align-items:center;overflow:hidden;-webkit-font-smoothing:antialiased}
+        button,a{font:inherit;-webkit-tap-highlight-color:transparent}
+
+        .mobile-frame{
+            position:relative;width:100vw;height:100dvh;max-width:500px;
+            background:
+                linear-gradient(180deg,rgba(1,7,4,.25),rgba(1,7,4,.72)),
+                url('background_image.jpeg') center/cover no-repeat,#030806;
+            display:flex;flex-direction:column;overflow:hidden;
+            padding:calc(14px + env(safe-area-inset-top)) 16px calc(12px + env(safe-area-inset-bottom));
+            isolation:isolate;
+        }
+        .mobile-frame:before{
+            content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;
+            background:radial-gradient(circle at 50% 42%,rgba(61,220,153,.10),transparent 38%);
+        }
+        @media(min-width:501px){
+            .mobile-frame{height:min(92dvh,880px);border:1px solid rgba(255,255,255,.12);border-radius:38px;box-shadow:0 30px 90px rgba(0,0,0,.7)}
         }
 
-        /* Mobile App Frame Container - Fully contained within viewport */
-        .mobile-frame {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
-            max-width: 480px;
-            background: url('background_image.jpeg') center/cover no-repeat, #030806;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 16px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.95);
-            overflow: hidden;
+        .glow-leaves-container{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+        .glow-leaf{position:absolute;top:-20px;background:radial-gradient(circle,rgba(110,231,183,.95),rgba(52,211,153,.22) 60%,transparent 100%);border-radius:50% 0 50% 50%;box-shadow:0 0 14px rgba(74,222,128,.7);opacity:.55;animation:fallLeaf linear infinite}
+        @keyframes fallLeaf{
+            0%{transform:translate3d(0,-30px,0) rotate(0);opacity:0}
+            18%{opacity:.65}
+            80%{opacity:.5}
+            100%{transform:translate3d(35px,105dvh,0) rotate(360deg);opacity:0}
         }
 
-        @media (min-width: 481px) {
-            .mobile-frame {
-                height: 92vh;
-                max-height: 850px;
-                border-radius: 36px;
-                border: 6px solid #0d1a14;
-            }
-        }
+        header{height:8px;flex-shrink:0;z-index:5}
 
-        /* Falling Glow Leaves Animation Container */
-        .glow-leaves-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 2;
+        .content-area{
+            flex:1;width:100%;min-height:0;display:flex;align-items:center;justify-content:center;
+            z-index:5;overflow:auto;padding:8px 0;
+            scrollbar-width:none;
         }
+        .content-area::-webkit-scrollbar{display:none}
 
-        .glow-leaf {
-            position: absolute;
-            top: -20px;
-            background: radial-gradient(circle, rgba(110,231,183,1) 0%, rgba(52,211,153,0.3) 60%, transparent 100%);
-            border-radius: 50% 0 50% 50%;
-            box-shadow: 0 0 10px rgba(74,222,128,0.8);
-            opacity: 0.7;
-            animation: fallLeaf linear infinite;
-        }
+        .section{display:none;width:100%;opacity:0;transform:translateY(8px) scale(.985);transition:opacity .28s ease,transform .28s ease}
+        .section.active{display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:1;transform:none}
 
-        @keyframes fallLeaf {
-            0% {
-                transform: translateY(-20px) translateX(0) rotate(0deg);
-                opacity: 0;
-            }
-            20% {
-                opacity: 0.8;
-            }
-            80% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(calc(100vh + 40px)) translateX(20px) rotate(360deg);
-                opacity: 0;
-            }
+        .home-wrapper{width:100%;display:flex;flex-direction:column;align-items:center;gap:20px}
+        .brand-block{text-align:center;width:100%;padding:0 10px}
+        .brand-kicker{
+            display:inline-flex;align-items:center;gap:7px;padding:6px 11px;border:1px solid var(--line);
+            border-radius:999px;background:rgba(255,255,255,.055);backdrop-filter:blur(12px);
+            color:#d9fff0;font-size:9px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:9px
         }
+        .brand-kicker:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+        .school-title-inline h1{
+            font-size:clamp(16px,4vw,19px);font-weight:750;letter-spacing:-.25px;line-height:1.25;
+            text-shadow:0 3px 18px rgba(0,0,0,.85)
+        }
+        .school-subtitle{margin-top:6px;color:var(--muted);font-size:10px;letter-spacing:.65px}
 
-        /* Empty Header Spacer to Balance Layout */
-        header {
-            width: 100%;
-            height: 10px;
-            flex-shrink: 0;
+        .portals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px 11px;width:100%;max-width:400px}
+        .portal-item{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;color:inherit;transition:transform .18s ease}
+        .portal-item:active{transform:scale(.93)}
+        .portal-item.disabled{opacity:.38;pointer-events:none}
+        .portal-squircle{
+            width:72px;height:72px;border-radius:22px;display:flex;align-items:center;justify-content:center;
+            position:relative;color:var(--accent);background:linear-gradient(145deg,rgba(35,73,57,.76),rgba(5,16,11,.92));
+            border:1px solid var(--line-strong);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+            box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 12px 28px rgba(0,0,0,.42);
+            transition:box-shadow .2s ease,border-color .2s ease,transform .2s ease
         }
+        .portal-item:hover .portal-squircle{border-color:rgba(110,231,183,.7);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 16px 34px rgba(0,0,0,.52),0 0 20px rgba(34,197,139,.10);transform:translateY(-2px)}
+        .portal-squircle svg{width:31px;height:31px;fill:currentColor}
+        .portal-label{font-size:11px;font-weight:650;color:#e3fff2;text-align:center;white-space:nowrap;text-shadow:0 2px 6px #000}
+        .portal-badge{
+            position:absolute;top:-6px;right:-6px;padding:4px 7px;border-radius:999px;
+            font-size:8px;font-weight:800;background:var(--accent);color:#032319;box-shadow:0 4px 12px rgba(0,0,0,.4)
+        }
+        .portal-badge.na{background:#26312d;color:#a8b4af}
 
-        /* Content Area */
-        .content-area {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            z-index: 5;
-            overflow: hidden;
-            padding: 4px 0;
+        .glass-card{
+            width:100%;max-width:400px;padding:12px;border-radius:25px;
+            background:linear-gradient(145deg,rgba(18,39,29,.76),rgba(3,12,8,.80));
+            border:1px solid var(--line);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);box-shadow:var(--shadow)
         }
+        .card-heading{display:flex;align-items:center;justify-content:space-between;margin:2px 4px 11px}
+        .card-heading h2{font-size:14px;font-weight:750;letter-spacing:-.2px}
+        .status-pill{font-size:8px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:#063323;background:#9af5cc;padding:5px 8px;border-radius:999px}
 
-        .section {
-            display: none;
-            width: 100%;
-            opacity: 0;
-            transform: scale(0.97);
-            transition: opacity 0.2s ease, transform 0.2s ease;
+        .video-box{
+            position:relative;width:100%;padding-bottom:56.25%;height:0;border-radius:18px;overflow:hidden;background:#000;
+            border:1px solid rgba(110,231,183,.25);box-shadow:0 12px 30px rgba(0,0,0,.48)
         }
+        .video-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+        .video-caption{text-align:center;color:var(--muted);font-size:10px;margin-top:10px}
 
-        .section.active {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            opacity: 1;
-            transform: scale(1);
-        }
+        .gallery-container{width:100%;max-width:400px}
+        .gallery-slider{width:100%;height:min(52vh,320px);min-height:230px;border-radius:22px;overflow:hidden;position:relative;background:#06100b;border:1px solid var(--line);box-shadow:var(--shadow)}
+        .gallery-slide{position:absolute;inset:0;opacity:0;transition:opacity .55s ease;display:flex;align-items:center;justify-content:center}
+        .gallery-slide.active{opacity:1}
+        .gallery-slide img{width:100%;height:100%;object-fit:cover;display:block}
+        .gallery-slide:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.42))}
+        .fallback-text{color:#b7f5da;font-size:12px;font-weight:600}
+        .gallery-meta{display:flex;align-items:center;justify-content:space-between;margin-top:11px;color:var(--muted);font-size:9px}
+        .gallery-dots{display:flex;gap:5px}
+        .dot{width:6px;height:6px;border-radius:99px;background:rgba(110,231,183,.25);transition:.3s}
+        .dot.active{width:18px;background:var(--accent)}
 
-        /* Home Tab Wrapper to place School Name right above grid */
-        .home-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            gap: 18px;
+        footer{display:flex;flex-direction:column;align-items:center;gap:9px;z-index:10;flex-shrink:0}
+        .dock{
+            display:flex;align-items:center;justify-content:center;gap:10px;padding:7px 8px;
+            background:rgba(4,15,10,.78);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+            border:1px solid var(--line);border-radius:25px;box-shadow:0 16px 40px rgba(0,0,0,.48)
         }
+        .dock-btn{
+            width:47px;height:43px;border:0;border-radius:18px;background:transparent;color:#91a69d;
+            display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s
+        }
+        .dock-btn svg{width:22px;height:22px;fill:currentColor}
+        .dock-btn.active{background:linear-gradient(145deg,#76f0bc,#28c78d);color:#03291b;box-shadow:0 7px 20px rgba(40,199,141,.28)}
+        .developer-credit{
+            display:flex;align-items:center;gap:5px;color:rgba(213,255,237,.62);font-size:9px;letter-spacing:.45px;font-weight:550;
+            padding:3px 9px 0;text-shadow:0 1px 4px #000
+        }
+        .developer-credit:before{content:"";width:20px;height:1px;background:rgba(110,231,183,.25)}
+        .developer-credit:after{content:"";width:20px;height:1px;background:rgba(110,231,183,.25)}
 
-        .school-title-inline {
-            width: 100%;
-            text-align: center;
-            padding: 0 10px;
+        @media(max-height:650px){
+            .home-wrapper{gap:12px}.portals-grid{gap:10px}.portal-squircle{width:60px;height:60px;border-radius:18px}.portal-squircle svg{width:27px;height:27px}
+            .gallery-slider{height:210px;min-height:190px}.school-subtitle{display:none}.brand-kicker{margin-bottom:5px;padding:4px 9px}
         }
-
-        .school-title-inline h1 {
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            color: #ffffff;
-            text-transform: uppercase;
-            line-height: 1.35;
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95);
-        }
-
-        /* Optimized 3x2 Grid with Larger Touch Targets */
-        .portals-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 14px 10px;
-            width: 100%;
-            max-width: 380px;
-        }
-
-        .portal-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            gap: 6px;
-            transition: transform 0.15s ease;
-        }
-
-        .portal-item:active {
-            transform: scale(0.92);
-        }
-
-        .portal-item.disabled {
-            opacity: 0.45;
-            pointer-events: none;
-        }
-
-        /* Enlarged Apple iOS Squircle Icon Container */
-        .portal-squircle {
-            width: 68px;
-            height: 68px;
-            border-radius: 18px;
-            background: rgba(8, 22, 16, 0.94);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1.5px solid rgba(82, 183, 136, 0.6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #6ee7b7;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8), inset 0 1px 2px rgba(255, 255, 255, 0.25);
-            position: relative;
-        }
-
-        .portal-squircle svg {
-            width: 30px;
-            height: 30px;
-            fill: currentColor;
-        }
-
-        .portal-label {
-            font-size: 11px;
-            font-weight: 600;
-            color: #d1fae5;
-            text-align: center;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
-            white-space: nowrap;
-        }
-
-        /* iOS Style Pill Badge */
-        .portal-badge {
-            position: absolute;
-            top: -4px;
-            right: -4px;
-            font-size: 8px;
-            font-weight: 700;
-            padding: 2px 5px;
-            border-radius: 8px;
-            background: #10b981;
-            color: #022c22;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-        }
-
-        .portal-badge.na {
-            background: #374151;
-            color: #9ca3af;
-        }
-
-        /* Video Container */
-        .video-box {
-            position: relative;
-            width: 100%;
-            max-width: 380px;
-            padding-bottom: 56.25%;
-            height: 0;
-            border-radius: 14px;
-            overflow: hidden;
-            background: #000;
-            border: 1.5px solid rgba(82, 183, 136, 0.5);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
-        }
-
-        .video-box iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* Full Size Auto-Scrolling Gallery */
-        .gallery-container {
-            width: 100%;
-            max-width: 380px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .gallery-slider {
-            width: 100%;
-            height: 260px;
-            background: rgba(8, 22, 16, 0.95);
-            border-radius: 14px;
-            overflow: hidden;
-            position: relative;
-            border: 1.5px solid rgba(82, 183, 136, 0.5);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
-        }
-
-        .gallery-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .gallery-slide.active {
-            opacity: 1;
-        }
-
-        .gallery-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .gallery-slide .fallback-text {
-            color: #a7f3d0;
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        /* Carousel Navigation Dots */
-        .gallery-dots {
-            display: flex;
-            gap: 6px;
-        }
-
-        .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(110, 231, 183, 0.3);
-            transition: background 0.3s ease;
-        }
-
-        .dot.active {
-            background: #10b981;
-            width: 18px;
-            border-radius: 4px;
-        }
-
-        /* Footer & Dock */
-        footer {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            z-index: 10;
-            flex-shrink: 0;
-        }
-
-        .dock {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 8px 18px;
-            background: rgba(5, 18, 12, 0.92);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 26px;
-            border: 1.5px solid rgba(82, 183, 136, 0.5);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
-        }
-
-        /* Enlarged Interactive Dock Buttons */
-        .dock-btn {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #9ca3af;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .dock-btn svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-        }
-
-        .dock-btn.active {
-            background: #10b981;
-            color: #022c22;
-            border-color: #34d399;
-            transform: scale(1.08);
-            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.6);
-        }
-
-        .developer-credit {
-            font-size: 10px;
-            color: rgba(167, 243, 208, 0.75);
-            letter-spacing: 0.4px;
-            text-align: center;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
-            font-weight: 500;
-        }
+        @media(max-width:360px){.portal-squircle{width:62px;height:62px}.portals-grid{gap:13px 7px}.portal-label{font-size:10px}}
     </style>
 </head>
 <body>
@@ -398,8 +164,12 @@
             <!-- TAB 1: PORTALS with School Name placed right above -->
             <div id="tab-home" class="section active">
                 <div class="home-wrapper">
-                    <div class="school-title-inline">
-                        <h1>South Point Visual & Performing Arts School, Guwahati</h1>
+                    <div class="brand-block">
+                        <div class="brand-kicker">Student Portal</div>
+                        <div class="school-title-inline">
+                            <h1>South Point Visual & Performing Arts School, Guwahati</h1>
+                        </div>
+                        <div class="school-subtitle">Fine Arts • Student Services • Examination</div>
                     </div>
                     <div class="portals-grid">
                         <a href="https://darpansukla.github.io/fineartsexam27/" target="_blank" class="portal-item">
@@ -455,7 +225,8 @@
 
             <!-- TAB 2: TUTORIAL VIDEO -->
             <div id="tab-video" class="section">
-                <div style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                <div class="glass-card">
+                    <div class="card-heading"><h2>Exam Form Tutorial</h2><span class="status-pill">Guide</span></div>
                     <div class="video-box">
                         <iframe src="https://www.youtube-nocookie.com/embed/iUfH1DZ04U4" title="Tutorial Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
@@ -467,12 +238,16 @@
 
             <!-- TAB 3: GALLERY -->
             <div id="tab-gallery" class="section">
-                <div class="gallery-container">
-                    <div class="gallery-slider" id="gallerySlider">
-                        <!-- Slides injected via script -->
-                    </div>
-                    <div class="gallery-dots" id="galleryDots">
-                        <!-- Dots injected via script -->
+                <div class="glass-card">
+                    <div class="card-heading"><h2>School Gallery</h2><span class="status-pill">Memories</span></div>
+                    <div class="gallery-container">
+                        <div class="gallery-slider" id="gallerySlider">
+                            <!-- Slides injected via script -->
+                        </div>
+                        <div class="gallery-meta">
+                            <span>South Point Visual & Performing Arts School</span>
+                            <div class="gallery-dots" id="galleryDots"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -552,7 +327,7 @@
 
         // Falling Leaves Particles
         const leavesContainer = document.getElementById('leavesContainer');
-        const leafCount = 8;
+        const leafCount = 12;
         for(let i = 0; i < leafCount; i++) {
             const leaf = document.createElement('div');
             leaf.className = 'glow-leaf';
