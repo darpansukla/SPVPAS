@@ -20,7 +20,6 @@
             --dock-bg:rgba(15,23,42,0.9);
         }
 
-        /* Light Theme Palette Applied Automatically on Bright Backgrounds */
         body.light-theme {
             --text-color: #0f172a;
             --sub-color: #475569;
@@ -36,7 +35,6 @@
         body{display:flex;justify-content:center;align-items:center;overflow:hidden;-webkit-font-smoothing:antialiased}
         button,a{font:inherit;-webkit-tap-highlight-color:transparent}
 
-        /* Moving Background Animation */
         @keyframes panBackground {
             0% { background-position: 0% 0%; background-size: 105% 105%; }
             50% { background-position: 100% 100%; background-size: 115% 115%; }
@@ -68,35 +66,19 @@
             100%{transform:translate3d(25px,105dvh,0) scale(1.2);opacity:0}
         }
 
-        /* Header / Premium Typography Block */
-        header{
-            width:100%;flex-shrink:0;z-index:5;text-align:center;padding:6px 0 14px;
-        }
+        header{width:100%;flex-shrink:0;z-index:5;text-align:center;padding:6px 0 14px;}
         .school-title-inline h1{
-            font-size:clamp(17px,4vw,20px);
-            font-weight:800;
-            letter-spacing:-.4px;
-            line-height:1.25;
-            color:var(--text-color);
-            text-shadow:var(--text-shadow);
-            transition: color 0.3s ease;
+            font-size:clamp(17px,4vw,20px);font-weight:800;letter-spacing:-.4px;line-height:1.25;
+            color:var(--text-color);text-shadow:var(--text-shadow);transition: color 0.3s ease;
         }
         .school-subtitle{
-            margin-top:7px;
-            color:var(--sub-color);
-            font-size:10.5px;
-            letter-spacing:.8px;
-            text-transform:uppercase;
-            font-weight:750;
-            text-shadow:var(--text-shadow);
-            opacity:0.95;
-            transition: color 0.3s ease;
+            margin-top:7px;color:var(--sub-color);font-size:10.5px;letter-spacing:.8px;text-transform:uppercase;font-weight:750;
+            text-shadow:var(--text-shadow);opacity:0.95;transition: color 0.3s ease;
         }
 
         .content-area{
             flex:1;width:100%;min-height:0;display:flex;align-items:center;justify-content:center;
-            z-index:5;overflow:auto;padding:8px 0;
-            scrollbar-width:none;
+            z-index:5;overflow:auto;padding:8px 0;scrollbar-width:none;
         }
         .content-area::-webkit-scrollbar{display:none}
 
@@ -110,21 +92,14 @@
         .portal-item:active{transform:scale(.94)}
         
         @keyframes iconAttentionPulse {
-            0%, 100% {
-                transform: translateY(0) scale(1);
-                box-shadow: 0 0 15px rgba(2,132,199,0.3), 0 6px 16px rgba(0,0,0,0.1);
-            }
-            50% {
-                transform: translateY(-4px) scale(1.03);
-                box-shadow: 0 0 26px rgba(2,132,199,0.5), 0 10px 22px rgba(0,0,0,0.15);
-            }
+            0%, 100% { transform: translateY(0) scale(1); box-shadow: 0 0 15px rgba(2,132,199,0.3), 0 6px 16px rgba(0,0,0,0.1); }
+            50% { transform: translateY(-4px) scale(1.03); box-shadow: 0 0 26px rgba(2,132,199,0.5), 0 10px 22px rgba(0,0,0,0.15); }
         }
 
         .portal-squircle{
             width:76px;height:76px;border-radius:24px;display:flex;align-items:center;justify-content:center;
             position:relative;color:var(--accent);background:var(--squircle-bg);
-            backdrop-filter:blur(10px);
-            -webkit-backdrop-filter:blur(10px);
+            backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
             border:1px solid var(--squircle-border);
             animation: iconAttentionPulse 3s ease-in-out infinite;
             transition:transform .2s ease, background 0.3s ease, border-color 0.3s ease;
@@ -140,71 +115,85 @@
             width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;
             filter:drop-shadow(0 2px 4px rgba(0,0,0,0.15));
         }
-        .portal-label{
-            font-size:11px;font-weight:750;color:var(--text-color);text-align:center;white-space:nowrap;
-            text-shadow:var(--text-shadow);
-            transition: color 0.3s ease;
-        }
+        .portal-label{font-size:11px;font-weight:750;color:var(--text-color);text-align:center;white-space:nowrap;text-shadow:var(--text-shadow);transition: color 0.3s ease;}
         .portal-badge{
             position:absolute;top:-5px;right:-5px;padding:3px 7px;border-radius:999px;
             font-size:8px;font-weight:800;background:var(--accent);color:#ffffff;box-shadow:0 4px 10px rgba(0,0,0,0.15);
-            animation: badgePulse 2s ease-in-out infinite;
-        }
-        @keyframes badgePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
         }
 
         .glass-card{
             width:100%;max-width:420px;padding:16px;border-radius:28px;
-            background:var(--card-bg);
-            backdrop-filter:blur(12px);
-            -webkit-backdrop-filter:blur(12px);
-            border:1px solid var(--squircle-border);
-            box-shadow:var(--card-shadow);
+            background:var(--card-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+            border:1px solid var(--squircle-border);box-shadow:var(--card-shadow);
             transition: background 0.3s ease, border-color 0.3s ease;
         }
         .card-heading{display:flex;align-items:center;justify-content:space-between;margin:2px 4px 12px}
-        .card-heading h2{
-            font-size:15px;font-weight:750;letter-spacing:-.2px;color:var(--text-color);
-            text-shadow:var(--text-shadow);
-            transition: color 0.3s ease;
-        }
+        .card-heading h2{font-size:15px;font-weight:750;letter-spacing:-.2px;color:var(--text-color);text-shadow:var(--text-shadow);}
         .status-pill{font-size:9px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#ffffff;background:var(--accent);padding:5px 10px;border-radius:999px;box-shadow:0 2px 6px rgba(0,0,0,0.1)}
 
-        .video-box{
-            position:relative;width:100%;padding-bottom:56.25%;height:0;border-radius:20px;overflow:hidden;background:rgba(0,0,0,0.1);
-            border:1px solid var(--squircle-border);box-shadow:0 8px 20px rgba(0,0,0,0.15)
+        /* Videos */
+        .videos-scroll-container{
+            width:100%;max-height:min(52vh,330px);overflow-y:auto;display:flex;flex-direction:column;gap:14px;
+            padding-right:2px;scrollbar-width:thin;scrollbar-color:var(--accent) rgba(0,0,0,0.1);
         }
-        .video-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-        .video-caption{text-align:center;color:var(--sub-color);font-size:11px;margin-top:12px;font-weight:600;text-shadow:var(--text-shadow);transition: color 0.3s ease;}
+        .videos-scroll-container::-webkit-scrollbar{width:5px}
+        .videos-scroll-container::-webkit-scrollbar-thumb{background:var(--accent);border-radius:10px}
 
+        .video-item-wrapper{display:flex;flex-direction:column;gap:6px;width:100%}
+        .video-box{
+            position:relative;width:100%;padding-bottom:56.25%;height:0;border-radius:18px;overflow:hidden;background:rgba(0,0,0,0.25);
+            border:1px solid var(--squircle-border);box-shadow:0 6px 16px rgba(0,0,0,0.15)
+        }
+        .video-play-overlay{
+            position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+            background:linear-gradient(135deg, rgba(15,23,42,0.85) 0%, rgba(2,132,199,0.75) 100%);
+            cursor:pointer;text-decoration:none;transition:background 0.2s;z-index:4;
+        }
+        .video-play-overlay:hover{background:linear-gradient(135deg, rgba(15,23,42,0.9) 0%, rgba(2,132,199,0.9) 100%)}
+        .play-icon-circle{
+            width:54px;height:54px;border-radius:50%;background:#ffffff;color:var(--accent);display:flex;align-items:center;justify-content:center;
+            box-shadow:0 8px 25px rgba(0,0,0,0.3);transform:scale(1);transition:transform 0.2s;
+        }
+        .video-play-overlay:hover .play-icon-circle{transform:scale(1.1)}
+        .play-icon-circle svg{width:24px;height:24px;fill:currentColor;margin-left:3px}
+        .play-overlay-text{color:#ffffff;font-size:11px;font-weight:800;letter-spacing:.5px;text-shadow:0 1px 3px rgba(0,0,0,0.8)}
+        .video-caption{color:var(--text-color);font-size:11.5px;font-weight:750;text-shadow:var(--text-shadow);padding:0 4px;}
+
+        /* Vertical Swipe Gallery Container */
         .gallery-container{width:100%;max-width:420px}
-        .gallery-slider{width:100%;height:min(52vh,320px);min-height:240px;border-radius:22px;overflow:hidden;position:relative;background:rgba(0,0,0,0.1);border:1px solid var(--squircle-border);box-shadow:0 8px 20px rgba(0,0,0,0.15)}
-        .gallery-slide{position:absolute;inset:0;opacity:0;transition:opacity .55s ease;display:flex;align-items:center;justify-content:center}
-        .gallery-slide.active{opacity:1}
-        .gallery-slide img{width:100%;height:100%;object-fit:cover;display:block}
-        .gallery-slide:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.4))}
-        
-        .fallback-container{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:24px;text-align:center;color:var(--sub-color);background:rgba(0,0,0,0.1);width:100%;height:100%}
-        .fallback-container svg{width:40px;height:40px;stroke:var(--accent);fill:none;stroke-width:1.5}
-        .fallback-title{font-size:13px;font-weight:750;color:var(--text-color)}
-        .fallback-text{font-size:10px;font-weight:600;word-break:break-all;max-width:90%;color:var(--sub-color)}
-        
-        .gallery-meta{display:flex;align-items:center;justify-content:space-between;margin-top:12px;color:var(--sub-color);font-size:10px;font-weight:600;text-shadow:var(--text-shadow);transition: color 0.3s ease;}
-        .gallery-dots{display:flex;gap:5px}
-        .dot{width:6px;height:6px;border-radius:99px;background:rgba(15,23,42,0.25);transition:.3s}
-        .dot.active{width:20px;background:var(--accent);box-shadow:0 0 8px rgba(2,132,199,0.4)}
+        .gallery-scroll-wrapper{
+            width:100%;height:min(56vh,350px);min-height:280px;border-radius:22px;
+            overflow-y:auto; overflow-x:hidden;
+            display:flex;flex-direction:column;gap:12px;
+            padding-right:4px;
+            scroll-behavior:smooth;
+            scrollbar-width:thin;
+            scrollbar-color:var(--accent) rgba(0,0,0,0.1);
+        }
+        .gallery-scroll-wrapper::-webkit-scrollbar{width:5px}
+        .gallery-scroll-wrapper::-webkit-scrollbar-thumb{background:var(--accent);border-radius:10px}
+
+        .gallery-card-item{
+            width:100%;height:220px;border-radius:18px;overflow:hidden;position:relative;flex-shrink:0;
+            display:flex;align-items:center;justify-content:center;background:#000000;
+            border:1px solid var(--squircle-border);
+            box-shadow:0 6px 16px rgba(0,0,0,0.15);
+        }
+        .gallery-card-item img{width:100%;height:100%;object-fit:cover;display:block;background:#0b0f19}
+        .gallery-card-item:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.8));pointer-events:none}
+
+        .gallery-card-caption{
+            position:absolute;bottom:10px;left:14px;right:14px;z-index:3;
+            color:#ffffff;font-size:12px;font-weight:750;text-shadow:0 1px 4px rgba(0,0,0,0.9);
+            white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center;
+        }
+        .gallery-meta{display:flex;align-items:center;justify-content:center;margin-top:10px;color:var(--sub-color);font-size:10px;font-weight:600;text-shadow:var(--text-shadow);}
 
         footer{display:flex;flex-direction:column;align-items:center;gap:10px;z-index:10;flex-shrink:0}
         .dock{
             display:flex;align-items:center;justify-content:center;gap:8px;padding:8px;
-            background:var(--dock-bg);
-            backdrop-filter:blur(12px);
-            -webkit-backdrop-filter:blur(12px);
-            border:1px solid var(--squircle-border);
-            border-radius:28px;box-shadow:0 15px 35px rgba(0,0,0,0.15);
-            transition: background 0.3s ease, border-color 0.3s ease;
+            background:var(--dock-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+            border:1px solid var(--squircle-border);border-radius:28px;box-shadow:0 15px 35px rgba(0,0,0,0.15);
         }
         .dock-btn{
             width:50px;height:44px;border:0;border-radius:18px;background:transparent;color:var(--sub-color);
@@ -212,28 +201,15 @@
         }
         .dock-btn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.1))}
         .dock-btn.active{background:var(--accent-gradient);color:#ffffff;box-shadow:0 8px 20px rgba(2,132,199,.3)}
-        .developer-credit{
-            display:flex;align-items:center;gap:6px;color:var(--text-color);font-size:10px;letter-spacing:.4px;font-weight:750;
-            padding:2px 10px 0;text-shadow:var(--text-shadow);
-            transition: color 0.3s ease;
-        }
-        .developer-credit:before{content:"";width:16px;height:1px;background:currentColor;opacity:0.6}
-        .developer-credit:after{content:"";width:16px;height:1px;background:currentColor;opacity:0.6}
-
-        @media(max-height:650px){
-            .home-wrapper{gap:12px}.portals-grid{gap:10px}.portal-squircle{width:64px;height:64px;border-radius:20px}.portal-squircle svg{width:24px;height:24px}
-            .gallery-slider{height:210px;min-height:190px}.school-subtitle{display:none}
-        }
-        @media(max-width:360px){.portal-squircle{width:66px;height:66px}.portals-grid{gap:12px 6px}.portal-label{font-size:10px}}
+        .developer-credit{display:flex;align-items:center;gap:6px;color:var(--text-color);font-size:10px;letter-spacing:.4px;font-weight:750;padding:2px 10px 0;text-shadow:var(--text-shadow);}
+        .developer-credit:before,.developer-credit:after{content:"";width:16px;height:1px;background:currentColor;opacity:0.6}
     </style>
 </head>
 <body>
 
     <div class="mobile-frame" id="appFrame">
-        <!-- Subtle Background Floating Particles -->
         <div class="glow-leaves-container" id="leavesContainer"></div>
 
-        <!-- Header with School Name on Top -->
         <header>
             <div class="school-title-inline">
                 <h1>South Point Visual & Performing Arts School, Guwahati</h1>
@@ -241,42 +217,31 @@
             <div class="school-subtitle">Fine Arts • Student Services • Examination</div>
         </header>
 
-        <!-- Main Content Area -->
         <div class="content-area">
 
             <!-- TAB 1: HOME -->
             <div id="tab-home" class="section active">
                 <div class="home-wrapper">
-                    <div class="portals-grid" id="portalsGrid">
-                        <!-- Dynamic Home links injected here -->
-                    </div>
+                    <div class="portals-grid" id="portalsGrid"></div>
                 </div>
             </div>
 
             <!-- TAB 2: VIDEO -->
             <div id="tab-video" class="section">
                 <div class="glass-card">
-                    <div class="card-heading"><h2>Exam Form Tutorial</h2><span class="status-pill">Guide</span></div>
-                    <div class="video-box" id="videoContainer">
-                        <iframe src="https://www.youtube-nocookie.com/embed/iUfH1DZ04U4" title="Tutorial Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-caption">
-                        Tutorial Video for Exam Form Fillup
-                    </div>
+                    <div class="card-heading"><h2>Tutorial Guides</h2><span class="status-pill">Playable</span></div>
+                    <div class="videos-scroll-container" id="videosScrollContainer"></div>
                 </div>
             </div>
 
             <!-- TAB 3: GALLERY -->
             <div id="tab-gallery" class="section">
                 <div class="glass-card">
-                    <div class="card-heading"><h2>School Gallery</h2><span class="status-pill">Memories</span></div>
+                    <div class="card-heading"><h2>School Artworks & Gallery</h2><span class="status-pill">Swipe Up/Down</span></div>
                     <div class="gallery-container">
-                        <div class="gallery-slider" id="gallerySlider">
-                            <!-- Dynamic Gallery items loaded from Sheet -->
-                        </div>
+                        <div class="gallery-scroll-wrapper" id="galleryScrollWrapper"></div>
                         <div class="gallery-meta">
-                            <span id="galleryCaption">South Point Visual & Performing Arts School</span>
-                            <div class="gallery-dots" id="galleryDots"></div>
+                            <span>Swipe up or down to view all artworks</span>
                         </div>
                     </div>
                 </div>
@@ -284,13 +249,12 @@
 
         </div>
 
-        <!-- Footer & Dock -->
         <footer>
             <div class="dock">
                 <button class="dock-btn active" onclick="switchTab('home', this)" title="Home">
                     <svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                 </button>
-                <button class="dock-btn" onclick="switchTab('video', this)" title="Tutorial">
+                <button class="dock-btn" onclick="switchTab('video', this)" title="Tutorials">
                     <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"></polygon></svg>
                 </button>
                 <button class="dock-btn" onclick="switchTab('gallery', this)" title="Gallery">
@@ -305,30 +269,21 @@
         function switchTab(tabId, btn) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.dock-btn').forEach(b => b.classList.remove('active'));
-            
             document.getElementById('tab-' + tabId).classList.add('active');
             btn.classList.add('active');
         }
 
         function getIconSvg(name) {
             const n = name.toLowerCase();
-            if (n.includes('fee') || n.includes('pay') || n.includes('payment')) {
-                return '<svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>';
-            } else if (n.includes('test') || n.includes('mock') || n.includes('exam') || n.includes('quiz')) {
-                return '<svg viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="m9 14 2 2 4-4"></path></svg>';
-            } else if (n.includes('result') || n.includes('score') || n.includes('grade')) {
-                return '<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path></svg>';
-            } else if (n.includes('class') || n.includes('special') || n.includes('live')) {
-                return '<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>';
-            } else {
-                return '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>';
-            }
+            if (n.includes('fee') || n.includes('pay')) return '<svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>';
+            if (n.includes('test') || n.includes('exam')) return '<svg viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="m9 14 2 2 4-4"></path></svg>';
+            return '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>';
         }
 
         function getBadgeText(name) {
             const n = name.toLowerCase();
             if (n.includes('fee') || n.includes('pay')) return '₹ Pay';
-            if (n.includes('test') || n.includes('mock')) return 'Start';
+            if (n.includes('test')) return 'Start';
             return 'Open';
         }
 
@@ -337,238 +292,138 @@
             let cleanUrl = url.trim();
             if (cleanUrl.includes('drive.google.com') || cleanUrl.includes('docs.google.com')) {
                 let fileId = '';
-                if (cleanUrl.includes('/file/d/')) {
-                    fileId = cleanUrl.split('/file/d/')[1]?.split('/')[0];
-                } else if (cleanUrl.includes('id=')) {
-                    fileId = cleanUrl.split('id=')[1]?.split('&')[0];
-                }
-                if (fileId) {
-                    return `https://lh3.googleusercontent.com/d/${fileId}`;
-                }
+                if (cleanUrl.includes('/file/d/')) fileId = cleanUrl.split('/file/d/')[1]?.split('/')[0];
+                else if (cleanUrl.includes('id=')) fileId = cleanUrl.split('id=')[1]?.split('&')[0];
+                if (fileId) return `https://lh3.googleusercontent.com/d/${fileId}`;
             }
             return cleanUrl;
         }
 
-        // Smart background analyzer that toggles between high-contrast light/dark themes
-        function checkBackgroundBrightness(imgUrl) {
-            const img = new Image();
-            img.crossOrigin = "Anonymous";
-            img.src = imgUrl;
-            img.onload = function() {
-                try {
-                    const canvas = document.createElement('canvas');
-                    const ctx = canvas.getContext('2d');
-                    canvas.width = 30;
-                    canvas.height = 30;
-                    ctx.drawImage(img, 0, 0, 30, 30);
-                    const data = ctx.getImageData(0, 0, 30, 30).data;
-                    let brightnessSum = 0;
-                    for (let i = 0; i < data.length; i += 4) {
-                        // Perceived brightness formula
-                        brightnessSum += (data[i] * 0.299 + data[i+1] * 0.587 + data[i+2] * 0.114);
-                    }
-                    const avgBrightness = brightnessSum / (data.length / 4);
-                    if (avgBrightness > 150) {
-                        document.body.classList.add('light-theme');
-                    } else {
-                        document.body.classList.remove('light-theme');
-                    }
-                } catch(e) {
-                    // Fallback check based on filename or URL keywords if CORS restricts canvas sampling
-                    if (imgUrl.toLowerCase().includes('white') || imgUrl.toLowerCase().includes('light') || imgUrl.toLowerCase().includes('bright')) {
-                        document.body.classList.add('light-theme');
-                    } else {
-                        document.body.classList.remove('light-theme');
-                    }
-                }
-            };
-            img.onerror = function() {
-                document.body.classList.remove('light-theme');
-            };
+        function getYoutubeVideoId(url) {
+            if(!url) return '';
+            let clean = url.trim();
+            if(clean.includes('watch?v=')) return clean.split('watch?v=')[1]?.split('&')[0];
+            if(clean.includes('youtu.be/')) return clean.split('youtu.be/')[1]?.split('?')[0];
+            return '';
         }
-
-        let galleryItems = [];
-        let currentSlide = 0;
-        let slideInterval = null;
 
         async function loadSheetData() {
             const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR9w83_9w7PPNGYRN_Na7qV7a_-RFziQglSlWHwb2wxTv_b1j2s_uqoDqAR2eeQcrLBXogKBOjZRTm4/pub?gid=908736875&single=true&output=csv';
             const portalsGrid = document.getElementById('portalsGrid');
-            const videoContainer = document.getElementById('videoContainer');
+            const videosScrollContainer = document.getElementById('videosScrollContainer');
+            const scrollWrapper = document.getElementById('galleryScrollWrapper');
             const appFrame = document.getElementById('appFrame');
-            const slider = document.getElementById('gallerySlider');
-            const dotsContainer = document.getElementById('galleryDots');
             
             try {
                 const response = await fetch(sheetUrl);
                 const data = await response.text();
-                const rows = data.split('\n').map(row => row.split(',').map(cell => cell.trim().replace(/^"(.*)"$/, '$1')));
+                const rows = data.split('\n');
                 
                 portalsGrid.innerHTML = '';
-                let homeCount = 0;
-                galleryItems = [];
+                videosScrollContainer.innerHTML = '';
+                scrollWrapper.innerHTML = '';
+                let galleryCount = 0;
 
                 for(let i = 1; i < rows.length; i++) {
-                    const row = rows[i];
-                    if(row.length >= 2) {
-                        const websiteName = row[0];
-                        const websiteLink = row[1];
-                        const section = (row[2] || 'home').trim().toLowerCase();
+                    let rowStr = rows[i].trim();
+                    if(!rowStr) continue;
+                    
+                    let cells = [];
+                    let inQuotes = false, currentCell = '';
+                    for (let c = 0; c < rowStr.length; c++) {
+                        let char = rowStr[c];
+                        if (char === '"') { inQuotes = !inQuotes; }
+                        else if (char === ',' && !inQuotes) { cells.push(currentCell.trim().replace(/^"(.*)"$/, '$1')); currentCell = ''; }
+                        else { currentCell += char; }
+                    }
+                    cells.push(currentCell.trim().replace(/^"(.*)"$/, '$1'));
 
-                        if(websiteName && websiteLink && websiteLink !== '' && websiteLink.toLowerCase() !== 'n/a') {
+                    if(cells.length >= 2) {
+                        const name = cells[0];
+                        const link = cells[1];
+                        const section = (cells[2] || '').trim().toLowerCase();
+
+                        if(name && link && link !== '' && link.toLowerCase() !== 'n/a') {
                             
                             if(section.includes('background') || section.includes('bg') || section.includes('wallpaper')) {
-                                const directBgUrl = formatImageUrl(websiteLink);
-                                appFrame.style.backgroundImage = `url('${directBgUrl}')`;
-                                checkBackgroundBrightness(directBgUrl);
+                                const bgUrl = formatImageUrl(link);
+                                appFrame.style.backgroundImage = `url('${bgUrl}')`;
                             }
-                            
-                            if(section === 'home') {
-                                homeCount++;
-                                const iconSvg = getIconSvg(websiteName);
-                                const badgeText = getBadgeText(websiteName);
 
+                            if(section === 'home' || section === '') {
                                 const a = document.createElement('a');
-                                a.href = websiteLink;
+                                a.href = link;
                                 a.target = '_blank';
                                 a.className = 'portal-item';
                                 a.innerHTML = `
                                     <div class="portal-squircle">
-                                        ${iconSvg}
-                                        <span class="portal-badge">${badgeText}</span>
+                                        ${getIconSvg(name)}
+                                        <span class="portal-badge">${getBadgeText(name)}</span>
                                     </div>
-                                    <span class="portal-label">${websiteName}</span>
+                                    <span class="portal-label">${name}</span>
                                 `;
                                 portalsGrid.appendChild(a);
                             }
 
                             if(section === 'video' || section === 'tutorial') {
-                                let embedUrl = websiteLink;
-                                if(websiteLink.includes('watch?v=')) {
-                                    embedUrl = websiteLink.replace('watch?v=', 'embed/');
-                                } else if(websiteLink.includes('youtu.be/')) {
-                                    const videoId = websiteLink.split('youtu.be/')[1]?.split('?')[0];
-                                    if(videoId) embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}`;
-                                }
-                                videoContainer.innerHTML = `<iframe src="${embedUrl}" title="Tutorial Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                                const videoId = getYoutubeVideoId(link);
+                                const watchUrl = link.startsWith('http') ? link : `https://www.youtube.com/watch?v=${videoId}`;
+                                const thumbUrl = videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : '';
+
+                                const videoWrapper = document.createElement('div');
+                                videoWrapper.className = 'video-item-wrapper';
+                                videoWrapper.innerHTML = `
+                                    <div class="video-box">
+                                        <a href="${watchUrl}" target="_blank" class="video-play-overlay" title="Watch Video">
+                                            ${thumbUrl ? `<img src="${thumbUrl}" alt="${name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.65;">` : ''}
+                                            <div class="play-icon-circle">
+                                                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                                            </div>
+                                            <span class="play-overlay-text">Tap to Watch on YouTube</span>
+                                        </a>
+                                    </div>
+                                    <div class="video-caption">${name}</div>
+                                `;
+                                videosScrollContainer.appendChild(videoWrapper);
                             }
 
-                            if(section === 'gallery' || section === 'gallary' || section === 'image' || section === 'images') {
-                                galleryItems.push({ name: websiteName, url: formatImageUrl(websiteLink) });
+                            if(section === 'gallery' || section === 'gallary' || section === 'image' || section === 'images' || section === 'artwork') {
+                                galleryCount++;
+                                const imageUrl = formatImageUrl(link);
+                                
+                                const cardItem = document.createElement('div');
+                                cardItem.className = 'gallery-card-item';
+                                
+                                const img = document.createElement('img');
+                                img.src = imageUrl;
+                                img.alt = name;
+                                
+                                cardItem.appendChild(img);
+                                
+                                const caption = document.createElement('div');
+                                caption.className = 'gallery-card-caption';
+                                caption.innerText = name;
+                                cardItem.appendChild(caption);
+                                
+                                scrollWrapper.appendChild(cardItem);
                             }
                         }
                     }
                 }
 
-                if(homeCount === 0) {
-                    portalsGrid.innerHTML = '<div style="grid-column: span 3; text-align: center; color: var(--text-color); font-size: 12px; font-weight: 600; padding: 20px;">No home portals available.</div>';
-                }
-
-                if(galleryItems.length > 0) {
-                    slider.innerHTML = '';
-                    dotsContainer.innerHTML = '';
-
-                    galleryItems.forEach((item, index) => {
-                        const slideDiv = document.createElement('div');
-                        slideDiv.className = `gallery-slide ${index === 0 ? 'active' : ''}`;
-                        
-                        const img = document.createElement('img');
-                        img.src = item.url;
-                        img.alt = item.name;
-                        
-                        img.onerror = function() {
-                            slideDiv.innerHTML = `
-                                <div class="fallback-container">
-                                    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
-                                    <div class="fallback-title">${item.name}</div>
-                                    <span class="fallback-text">Ensure Google Drive link sharing is set to "Anyone with the link can view"</span>
-                                </div>
-                            `;
-                        };
-                        
-                        slideDiv.appendChild(img);
-                        slider.appendChild(slideDiv);
-
-                        const dot = document.createElement('div');
-                        dot.className = `dot ${index === 0 ? 'active' : ''}`;
-                        dotsContainer.appendChild(dot);
-                    });
-
-                    startGallerySlider();
-                } else {
-                    initDefaultGallery();
+                if(galleryCount === 0) {
+                    scrollWrapper.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;width:100%;color:#fff;font-size:12px;text-align:center;padding:20px;">No gallery artworks found. Check Column 3 in Sheet for "gallery".</div>';
                 }
 
             } catch (error) {
-                console.error('Error loading Google Sheet:', error);
-                portalsGrid.innerHTML = '<div style="grid-column: span 3; text-align: center; color: var(--text-color); font-size: 12px; font-weight: 600; padding: 20px;">Failed to load portals.</div>';
-                initDefaultGallery();
+                console.error('Error loading Sheet:', error);
             }
-        }
-
-        function startGallerySlider() {
-            if(slideInterval) clearInterval(slideInterval);
-            const totalSlides = galleryItems.length > 0 ? galleryItems.length : 3;
-            
-            slideInterval = setInterval(() => {
-                const slides = document.querySelectorAll('.gallery-slide');
-                const dots = document.querySelectorAll('.dot');
-                if(slides.length === 0) return;
-
-                slides[currentSlide].classList.remove('active');
-                if(dots[currentSlide]) dots[currentSlide].classList.remove('active');
-
-                currentSlide = (currentSlide + 1) % totalSlides;
-
-                slides[currentSlide].classList.add('active');
-                if(dots[currentSlide]) dots[currentSlide].classList.add('active');
-                
-                if(galleryItems.length > 0 && galleryItems[currentSlide]) {
-                    document.getElementById('galleryCaption').innerText = galleryItems[currentSlide].name;
-                }
-            }, 3000);
-        }
-
-        function initDefaultGallery() {
-            const slider = document.getElementById('gallerySlider');
-            const dotsContainer = document.getElementById('galleryDots');
-            slider.innerHTML = '';
-            dotsContainer.innerHTML = '';
-            const totalSlides = 3;
-
-            for(let i = 1; i <= totalSlides; i++) {
-                const slideDiv = document.createElement('div');
-                slideDiv.className = `gallery-slide ${i === 1 ? 'active' : ''}`;
-                
-                const img = document.createElement('img');
-                img.src = `${i}.jpg`;
-                img.alt = `Gallery Image ${i}`;
-                
-                img.onerror = function() {
-                    slideDiv.innerHTML = `
-                        <div class="fallback-container">
-                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
-                            <div class="fallback-title">Image ${i}.jpg</div>
-                            <span class="fallback-text">Local file not found</span>
-                        </div>
-                    `;
-                };
-                
-                slideDiv.appendChild(img);
-                slider.appendChild(slideDiv);
-
-                const dot = document.createElement('div');
-                dot.className = `dot ${i === 1 ? 'active' : ''}`;
-                dotsContainer.appendChild(dot);
-            }
-            startGallerySlider();
         }
 
         loadSheetData();
 
         const leavesContainer = document.getElementById('leavesContainer');
-        const leafCount = 8;
-        for(let i = 0; i < leafCount; i++) {
+        for(let i = 0; i < 8; i++) {
             const leaf = document.createElement('div');
             leaf.className = 'glow-leaf';
             const size = Math.random() * 25 + 15;
