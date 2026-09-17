@@ -35,7 +35,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 12px 14px 14px 14px;
+            padding: 10px 14px 20px 14px; /* Increased bottom padding to lift footer */
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.95);
             overflow: hidden;
         }
@@ -43,7 +43,7 @@
         @media (min-width: 415px) {
             .mobile-frame {
                 height: 92vh;
-                max-height: 880px;
+                max-height: 850px;
                 border-radius: 36px;
                 border: 8px solid #0d1a14;
                 margin: 20px 0;
@@ -95,7 +95,7 @@
             display: flex;
             justify-content: center;
             z-index: 10;
-            margin-top: 4px;
+            margin-top: 2px;
         }
 
         .school-title-box {
@@ -103,7 +103,7 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(110, 231, 183, 0.35);
-            padding: 8px 10px;
+            padding: 6px 10px;
             border-radius: 12px;
             width: 100%;
             text-align: center;
@@ -126,7 +126,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 8px 0;
+            padding: 4px 0;
             z-index: 5;
         }
 
@@ -150,7 +150,7 @@
         .portals-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 12px 8px;
+            gap: 10px 8px;
             width: 100%;
             max-width: 350px;
         }
@@ -160,7 +160,7 @@
             flex-direction: column;
             align-items: center;
             text-decoration: none;
-            gap: 4px;
+            gap: 3px;
             transition: transform 0.15s ease;
         }
 
@@ -175,9 +175,9 @@
 
         /* Apple iOS Squircle Icon Container */
         .portal-squircle {
-            width: 56px;
-            height: 56px;
-            border-radius: 16px;
+            width: 52px;
+            height: 52px;
+            border-radius: 15px;
             background: rgba(10, 24, 18, 0.88);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
@@ -191,13 +191,13 @@
         }
 
         .portal-squircle svg {
-            width: 23px;
-            height: 23px;
+            width: 21px;
+            height: 21px;
             fill: currentColor;
         }
 
         .portal-label {
-            font-size: 10.5px;
+            font-size: 10px;
             font-weight: 500;
             color: #d1fae5;
             text-align: center;
@@ -209,9 +209,9 @@
             position: absolute;
             top: -4px;
             right: -4px;
-            font-size: 7.5px;
+            font-size: 7px;
             font-weight: 600;
-            padding: 2px 5px;
+            padding: 2px 4px;
             border-radius: 8px;
             background: #10b981;
             color: #022c22;
@@ -229,7 +229,7 @@
             width: 100%;
             padding-bottom: 56.25%;
             height: 0;
-            border-radius: 14px;
+            border-radius: 12px;
             overflow: hidden;
             background: #000;
             border: 1px solid rgba(82, 183, 136, 0.4);
@@ -245,50 +245,75 @@
             border: none;
         }
 
-        /* Gallery Grid Format */
-        .gallery-wrapper {
+        /* Auto-Scrolling Full Size Image Carousel */
+        .gallery-container {
             width: 100%;
-            max-height: 320px;
-            overflow-y: auto;
-            padding: 2px;
+            max-width: 340px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
         }
 
-        .gallery-wrapper::-webkit-scrollbar {
-            width: 3px;
-        }
-        .gallery-wrapper::-webkit-scrollbar-thumb {
-            background: rgba(110, 231, 183, 0.4);
-            border-radius: 3px;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
+        .gallery-slider {
             width: 100%;
-        }
-
-        .gallery-item {
-            width: 100%;
-            aspect-ratio: 1;
+            height: 230px;
             background: rgba(10, 24, 18, 0.9);
-            border-radius: 10px;
+            border-radius: 14px;
             overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(82, 183, 136, 0.4);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .gallery-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 11px;
-            color: #a7f3d0;
-            font-weight: 600;
-            border: 1px solid rgba(82, 183, 136, 0.35);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
         }
 
-        .gallery-item img {
+        .gallery-slide.active {
+            opacity: 1;
+        }
+
+        .gallery-slide img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
+        }
+
+        .gallery-slide .fallback-text {
+            color: #a7f3d0;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* Carousel Navigation Dots */
+        .gallery-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: rgba(110, 231, 183, 0.3);
+            transition: background 0.3s ease;
+        }
+
+        .dot.active {
+            background: #10b981;
+            width: 16px;
+            border-radius: 4px;
         }
 
         /* Apple Dock Style Footer Navigation & Credits */
@@ -296,30 +321,30 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             z-index: 10;
-            margin-bottom: 2px;
+            margin-bottom: 8px; /* Lifts the dock and credits higher up */
         }
 
         .dock {
             display: flex;
             justify-content: center;
-            gap: 14px;
-            padding: 6px 14px;
+            gap: 12px;
+            padding: 5px 12px;
             background: rgba(8, 22, 16, 0.85);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-            border-radius: 28px;
+            border-radius: 26px;
             border: 1px solid rgba(82, 183, 136, 0.4);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
         }
 
         .dock-btn {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            width: 38px;
-            height: 38px;
-            border-radius: 12px;
+            width: 35px;
+            height: 35px;
+            border-radius: 11px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -329,8 +354,8 @@
         }
 
         .dock-btn svg {
-            width: 17px;
-            height: 17px;
+            width: 16px;
+            height: 16px;
             fill: currentColor;
         }
 
@@ -338,12 +363,12 @@
             background: #10b981;
             color: #022c22;
             border-color: #34d399;
-            transform: scale(1.06);
-            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.5);
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.5);
         }
 
         .developer-credit {
-            font-size: 9.5px;
+            font-size: 9px;
             color: rgba(167, 243, 208, 0.65);
             letter-spacing: 0.3px;
             text-align: center;
@@ -426,16 +451,19 @@
                 <div class="video-box" style="width: 100%;">
                     <iframe src="https://www.youtube-nocookie.com/embed/iUfH1DZ04U4" title="Tutorial Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
-                <div style="font-size: 11px; text-align: center; color: #a7f3d0; font-weight: 500; margin-top: 6px; text-shadow: 0 1px 3px rgba(0,0,0,0.9);">
+                <div style="font-size: 10.5px; text-align: center; color: #a7f3d0; font-weight: 500; margin-top: 5px; text-shadow: 0 1px 3px rgba(0,0,0,0.9);">
                     Tutorial Video for Exam Form Fillup
                 </div>
             </div>
 
-            <!-- TAB 3: GALLERY -->
+            <!-- TAB 3: AUTO-SCROLLING FULL SIZE GALLERY -->
             <div id="tab-gallery" class="section">
-                <div class="gallery-wrapper">
-                    <div class="gallery-grid" id="galleryGrid">
-                        <!-- Populated automatically via script -->
+                <div class="gallery-container">
+                    <div class="gallery-slider" id="gallerySlider">
+                        <!-- Slides injected via script -->
+                    </div>
+                    <div class="gallery-dots" id="galleryDots">
+                        <!-- Dots injected via script -->
                     </div>
                 </div>
             </div>
@@ -468,23 +496,51 @@
             btn.classList.add('active');
         }
 
-        // Automatically Generate Gallery Items
-        const grid = document.getElementById('galleryGrid');
-        for(let i = 1; i <= 3; i++) {
-            const div = document.createElement('div');
-            div.className = 'gallery-item';
+        // Auto-Scrolling Full Size Gallery Setup
+        const slider = document.getElementById('gallerySlider');
+        const dotsContainer = document.getElementById('galleryDots');
+        let currentSlide = 0;
+        const totalSlides = 3;
+
+        for(let i = 1; i <= totalSlides; i++) {
+            const slide = document.exitPointerEvent ? null : document.createElement('div'); // safe check
+            const slideDiv = document.createElement('div');
+            slideDiv.className = `gallery-slide ${i === 1 ? 'active' : ''}`;
             
             const img = document.createElement('img');
             img.src = `${i}.jpg`;
-            img.alt = `Gallery ${i}`;
+            img.alt = `Gallery Image ${i}`;
+            
             img.onerror = function() {
                 this.remove();
-                div.innerText = `#${i}`;
+                const text = document.createElement('div');
+                text.className = 'fallback-text';
+                text.innerText = `Image ${i}.jpg not found`;
+                slideDiv.appendChild(text);
             };
             
-            div.appendChild(img);
-            grid.appendChild(div);
+            slideDiv.appendChild(img);
+            slider.appendChild(slideDiv);
+
+            const dot = document.createElement('div');
+            dot.className = `dot ${i === 1 ? 'active' : ''}`;
+            dotsContainer.appendChild(dot);
         }
+
+        // Automatic Carousel Timer (changes every 3 seconds)
+        setInterval(() => {
+            const slides = document.querySelectorAll('.gallery-slide');
+            const dots = document.querySelectorAll('.dot');
+            if(slides.length === 0) return;
+
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+
+            currentSlide = (currentSlide + 1) % totalSlides;
+
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }, 3000);
 
         // Generate Falling Glow Leaves Animation Particles
         const leavesContainer = document.getElementById('leavesContainer');
