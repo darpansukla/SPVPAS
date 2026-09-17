@@ -26,7 +26,9 @@
 
         .mobile-frame{
             position:relative;width:100vw;height:100dvh;max-width:500px;
-            background:#ffffff;
+            background:
+                linear-gradient(180deg,rgba(255,255,255,.88),rgba(255,255,255,.94)),
+                url('background_image.jpeg') center/cover no-repeat,#ffffff;
             display:flex;flex-direction:column;overflow:hidden;
             padding:calc(16px + env(safe-area-inset-top)) 20px calc(14px + env(safe-area-inset-bottom));
             isolation:isolate;
@@ -36,7 +38,7 @@
         }
 
         .glow-leaves-container{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
-        .glow-leaf{position:absolute;top:-20px;background:radial-gradient(circle,rgba(14,165,233,.15),transparent 70%);border-radius:50%;opacity:.4;animation:fallLeaf linear infinite}
+        .glow-leaf{position:absolute;top:-20px;background:radial-gradient(circle,rgba(14,165,233,.12),transparent 70%);border-radius:50%;opacity:.4;animation:fallLeaf linear infinite}
         @keyframes fallLeaf{
             0%{transform:translate3d(0,-30px,0) scale(0.8);opacity:0}
             20%{opacity:.5}
@@ -86,7 +88,9 @@
 
         .glass-card{
             width:100%;max-width:420px;padding:16px;border-radius:28px;
-            background:#ffffff;
+            background:rgba(255,255,255,.92);
+            backdrop-filter:blur(10px);
+            -webkit-backdrop-filter:blur(10px);
             border:1px solid var(--line);box-shadow:var(--card-shadow)
         }
         .card-heading{display:flex;align-items:center;justify-content:space-between;margin:2px 4px 12px}
@@ -115,7 +119,9 @@
         footer{display:flex;flex-direction:column;align-items:center;gap:10px;z-index:10;flex-shrink:0}
         .dock{
             display:flex;align-items:center;justify-content:center;gap:8px;padding:8px;
-            background:#ffffff;
+            background:rgba(255,255,255,.95);
+            backdrop-filter:blur(10px);
+            -webkit-backdrop-filter:blur(10px);
             border:1px solid var(--line);border-radius:28px;box-shadow:0 15px 35px rgba(15,23,42,.08)
         }
         .dock-btn{
@@ -125,8 +131,8 @@
         .dock-btn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
         .dock-btn.active{background:var(--accent-gradient);color:#ffffff;box-shadow:0 8px 20px rgba(14,165,233,.3)}
         .developer-credit{
-            display:flex;align-items:center;gap:6px;color:#64748b;font-size:10px;letter-spacing:.3px;font-weight:600;
-            padding:2px 10px 0
+            display:flex;align-items:center;gap:6px;color:#475569;font-size:10px;letter-spacing:.3px;font-weight:600;
+            padding:2px 10px 0;text-shadow:0 1px 2px rgba(255,255,255,.8)
         }
         .developer-credit:before{content:"";width:16px;height:1px;background:#cbd5e1}
         .developer-credit:after{content:"";width:16px;height:1px;background:#cbd5e1}
@@ -141,7 +147,7 @@
 <body>
 
     <div class="mobile-frame">
-        <!-- Minimalist Background Effect -->
+        <!-- Subtle Background Floating Particles -->
         <div class="glow-leaves-container" id="leavesContainer"></div>
 
         <!-- Header Spacer -->
