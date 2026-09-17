@@ -36,7 +36,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 16px 16px 24px 16px;
+            padding: 16px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.95);
             overflow: hidden;
         }
@@ -90,25 +90,34 @@
             }
         }
 
-        /* Clean Text Header (No Bar/Card) */
+        /* Perfectly Framed Header Inside App */
         header {
             width: 100%;
             display: flex;
             justify-content: center;
             z-index: 10;
-            padding: 4px 8px;
+        }
+
+        .school-title-box {
+            background: rgba(3, 15, 10, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(110, 231, 183, 0.25);
+            padding: 8px 12px;
+            border-radius: 14px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
         header h1 {
-            font-size: 13px;
+            font-size: 11.5px;
             font-weight: 700;
             letter-spacing: 0.5px;
             color: #ffffff;
-            text-align: center;
             text-transform: uppercase;
-            line-height: 1.4;
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95), 0 1px 2px rgba(0, 0, 0, 0.9);
-            width: 100%;
+            line-height: 1.35;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
         }
 
         /* Content Area */
@@ -118,7 +127,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 10px 0;
+            padding: 8px 0;
             z-index: 5;
         }
 
@@ -146,7 +155,7 @@
         .portals-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 18px 12px;
+            gap: 16px 12px;
             width: 100%;
             max-width: 350px;
             padding: 4px;
@@ -157,7 +166,7 @@
             flex-direction: column;
             align-items: center;
             text-decoration: none;
-            gap: 8px;
+            gap: 6px;
             transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
@@ -172,9 +181,9 @@
 
         /* Apple iOS Squircle Icon Container */
         .portal-squircle {
-            width: 64px;
-            height: 64px;
-            border-radius: 22px;
+            width: 62px;
+            height: 62px;
+            border-radius: 20px;
             background: rgba(10, 24, 18, 0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
@@ -194,8 +203,8 @@
         }
 
         .portal-squircle svg {
-            width: 26px;
-            height: 26px;
+            width: 25px;
+            height: 25px;
             fill: currentColor;
         }
 
@@ -252,7 +261,7 @@
         /* Gallery Grid Format */
         .gallery-wrapper {
             width: 100%;
-            max-height: 400px;
+            max-height: 380px;
             overflow-y: auto;
             padding: 4px;
         }
@@ -301,7 +310,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             z-index: 10;
         }
 
@@ -321,9 +330,9 @@
         .dock-btn {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            width: 44px;
-            height: 44px;
-            border-radius: 18px;
+            width: 42px;
+            height: 42px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -333,8 +342,8 @@
         }
 
         .dock-btn svg {
-            width: 20px;
-            height: 20px;
+            width: 19px;
+            height: 19px;
             fill: currentColor;
         }
 
@@ -366,9 +375,11 @@
         <!-- Falling Glow Leaves Animation Effect -->
         <div class="glow-leaves-container" id="leavesContainer"></div>
 
-        <!-- Clean Text Header (No Bar/Card) -->
+        <!-- Framed Clean Header Inside App -->
         <header>
-            <h1>South Point Visual & Performing Arts School, Guwahati</h1>
+            <div class="school-title-box">
+                <h1>South Point Visual & Performing Arts School, Guwahati</h1>
+            </div>
         </header>
 
         <!-- Main Content Area -->
@@ -401,7 +412,6 @@
                         <span class="portal-label">Mock Test</span>
                     </a>
 
-                    <!-- Exam Form Portal Disabled (N/A) -->
                     <div class="portal-item disabled">
                         <div class="portal-squircle">
                             <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
