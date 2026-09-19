@@ -88,7 +88,7 @@
         .home-wrapper{width:100%;display:flex;flex-direction:column;align-items:center;gap:22px}
 
         .portals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px 12px;width:100%;max-width:420px}
-        .portal-item{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;color:inherit;transition:transform .18s ease}
+        .portal-item{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;color:inherit;transition:transform .18s ease;cursor:pointer;}
         .portal-item:active{transform:scale(.94)}
         
         @keyframes iconAttentionPulse {
@@ -189,6 +189,36 @@
         }
         .gallery-meta{display:flex;align-items:center;justify-content:center;margin-top:10px;color:var(--sub-color);font-size:10px;font-weight:600;text-shadow:var(--text-shadow);}
 
+        /* PIN Modal Popup Overlay */
+        .pin-modal-overlay {
+            position: absolute; inset: 0; background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            z-index: 100; display: none; align-items: center; justify-content: center;
+            padding: 20px; opacity: 0; transition: opacity 0.25s ease;
+        }
+        .pin-modal-overlay.visible { display: flex; opacity: 1; }
+        .pin-modal-box {
+            width: 100%; max-width: 300px; background: var(--card-bg);
+            border: 1px solid var(--squircle-border); border-radius: 24px;
+            padding: 22px; text-align: center; box-shadow: var(--card-shadow);
+            display: flex; flex-direction: column; gap: 14px;
+        }
+        .pin-modal-title { font-size: 15px; font-weight: 800; color: var(--text-color); text-shadow: var(--text-shadow); }
+        .pin-modal-sub { font-size: 11px; color: var(--sub-color); font-weight: 600; }
+        .pin-input {
+            width: 100%; padding: 12px; border-radius: 14px; border: 1px solid var(--squircle-border);
+            background: rgba(0,0,0,0.2); color: var(--text-color); font-size: 16px; font-weight: 700;
+            text-align: center; outline: none; letter-spacing: 4px;
+        }
+        .pin-input:focus { border-color: var(--accent); }
+        .pin-btn-row { display: flex; gap: 10px; }
+        .pin-btn {
+            flex: 1; padding: 10px; border-radius: 12px; font-size: 12px; font-weight: 750; cursor: pointer; border: 0;
+        }
+        .pin-btn-cancel { background: rgba(255,255,255,0.1); color: var(--text-color); }
+        .pin-btn-submit { background: var(--accent-gradient); color: #ffffff; box-shadow: 0 4px 12px rgba(2,132,199,0.3); }
+        .pin-error { font-size: 10px; color: #ef4444; font-weight: 700; display: none; }
+
         footer{display:flex;flex-direction:column;align-items:center;gap:10px;z-index:10;flex-shrink:0}
         .dock{
             display:flex;align-items:center;justify-content:center;gap:8px;padding:8px;
@@ -209,6 +239,20 @@
 
     <div class="mobile-frame" id="appFrame">
         <div class="glow-leaves-container" id="leavesContainer"></div>
+
+        <!-- PIN Verification Modal -->
+        <div class="pin-modal-overlay" id="pinModalOverlay">
+            <div class="pin-modal-box">
+                <div class="pin-modal-title">Enter Security PIN</div>
+                <div class="pin-modal-sub" id="pinModalSubName">Protected Link Access</div>
+                <input type="password" inputmode="numeric" class="pin-input" id="pinInputField" placeholder="••••" maxlength="6">
+                <div class="pin-error" id="pinErrorText">Incorrect PIN. Try again.</div>
+                <div class="pin-btn-row">
+                    <button class="pin-btn pin-btn-cancel" onclick="closePinModal()">Cancel</button>
+                    <button class="pin-btn pin-btn-submit" onclick="verifyAndOpenPin()">Verify & Open</button>
+                </div>
+            </div>
+        </div>
 
         <header>
             <div class="school-title-inline">
@@ -266,6 +310,9 @@
     </div>
 
     <script>
+        let pendingLink = '';
+        let pendingPin = '';
+
         function switchTab(tabId, btn) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.dock-btn').forEach(b => b.classList.remove('active'));
@@ -280,8 +327,9 @@
             return '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>';
         }
 
-        function getBadgeText(name) {
+        function getBadgeText(name, pin) {
             const n = name.toLowerCase();
+            if (pin && pin !== '' && pin.toLowerCase() !== 'n/a' && pin !== 'undefined') return '🔒 PIN';
             if (n.includes('fee') || n.includes('pay')) return '₹ Pay';
             if (n.includes('test')) return 'Start';
             return 'Open';
@@ -307,8 +355,48 @@
             return '';
         }
 
+        function handlePortalClick(e, link, pin, name) {
+            e.preventDefault();
+            // Strict evaluation ensuring pin exists and isn't empty or N/A
+            const cleanPin = pin ? String(pin).trim() : '';
+            if (cleanPin !== '' && cleanPin.toLowerCase() !== 'n/a' && cleanPin !== 'undefined') {
+                pendingLink = link;
+                pendingPin = cleanPin;
+                document.getElementById('pinModalSubName').innerText = name;
+                document.getElementById('pinInputField').value = '';
+                document.getElementById('pinErrorText').style.display = 'none';
+                document.getElementById('pinModalOverlay').classList.add('visible');
+                setTimeout(() => document.getElementById('pinInputField').focus(), 100);
+            } else {
+                window.open(link, '_blank');
+            }
+        }
+
+        function closePinModal() {
+            document.getElementById('pinModalOverlay').classList.remove('visible');
+            pendingLink = '';
+            pendingPin = '';
+        }
+
+        function verifyAndOpenPin() {
+            const enteredPin = document.getElementById('pinInputField').value.trim();
+            if (enteredPin === pendingPin) {
+                const targetLink = pendingLink;
+                closePinModal();
+                window.open(targetLink, '_blank');
+            } else {
+                const err = document.getElementById('pinErrorText');
+                err.style.display = 'block';
+                document.getElementById('pinInputField').value = '';
+            }
+        }
+
+        document.getElementById('pinInputField').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') verifyAndOpenPin();
+        });
+
         async function loadSheetData() {
-            const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR9w83_9w7PPNGYRN_Na7qV7a_-RFziQglSlWHwb2wxTv_b1j2s_uqoDqAR2eeQcrLBXogKBOjZRTm4/pub?gid=908736875&single=true&output=csv';
+            const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR9w83_9w7PPNGYRN_Na7qV7a_-RFziQglSlWHwb2wxTv_b1j2s_uqoDqAR2eeQcrLBXogKBOjZRTm4/pub?gid=908736875&single=true&output=csv&t=' + new Date().getTime(); // Added timestamp to prevent cache issues
             const portalsGrid = document.getElementById('portalsGrid');
             const videosScrollContainer = document.getElementById('videosScrollContainer');
             const scrollWrapper = document.getElementById('galleryScrollWrapper');
@@ -342,6 +430,7 @@
                         const name = cells[0];
                         const link = cells[1];
                         const section = (cells[2] || '').trim().toLowerCase();
+                        const pin = (cells[3] || '').trim();
 
                         if(name && link && link !== '' && link.toLowerCase() !== 'n/a') {
                             
@@ -351,18 +440,17 @@
                             }
 
                             if(section === 'home' || section === '') {
-                                const a = document.createElement('a');
-                                a.href = link;
-                                a.target = '_blank';
-                                a.className = 'portal-item';
-                                a.innerHTML = `
+                                const itemDiv = document.createElement('div');
+                                itemDiv.className = 'portal-item';
+                                itemDiv.onclick = (e) => handlePortalClick(e, link, pin, name);
+                                itemDiv.innerHTML = `
                                     <div class="portal-squircle">
                                         ${getIconSvg(name)}
-                                        <span class="portal-badge">${getBadgeText(name)}</span>
+                                        <span class="portal-badge">${getBadgeText(name, pin)}</span>
                                     </div>
                                     <span class="portal-label">${name}</span>
                                 `;
-                                portalsGrid.appendChild(a);
+                                portalsGrid.appendChild(itemDiv);
                             }
 
                             if(section === 'video' || section === 'tutorial') {
